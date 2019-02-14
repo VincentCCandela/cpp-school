@@ -11,7 +11,7 @@ double Grade;
 cout << "What is your grade: " << endl;
 cin >> Grade;
 letter_grade = grader(Grade);
-the_addendum = addendum(Grade);
+string the_addendum = addendum(Grade);
 cout << "Your grade is: " << letter_grade << the_addendum << endl;
 
 return 0;
