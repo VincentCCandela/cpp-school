@@ -21,7 +21,7 @@ double b = fmod(a,10);
 if (b >= 0 && b <=3){
 	return '-';
 	}
-else if (b >= 7 && b <0)
+else if (b >= 7 && b <0){
 	return '+';
 	}
 }
