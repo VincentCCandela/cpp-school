@@ -6,13 +6,43 @@ char grader(double grade);
 string addendum(double a);
 
 int main(){
+
+double grade1, average, total;                                                                                  
+int round = 1;                                                                                                 
+                                                                                                               
+average = 0;                                                                                                   
+cout << "Enter your grade: " << endl;                                                                          
+cin >> grade1;                                                                                                  
+                                                                                                               
+average = grade1;                                                                                               
+total = grade1;                                                                                                 
+                                                                                                               
+while(grade1 != 101) {                                                                                          
+        if (grade1 == 101 ){                                                                                    
+                                                                                                               
+                }                                                                                              
+        else if(grade1 != 101){                                                                                 
+                round++;                                                                                       
+                cout << "Enter your grade: " << endl;                                                          
+                cin >> grade1;                                                                                  
+                total = total + grade1;                                                                         
+                average = (total) / round;                                                                     
+                if(grade1 != 101){                                                                              
+                        cout << fixed << setprecision(3) << "Your average is: " << average << endl;            
+                        }                                                                                      
+                else{                                                                                          
+                                                                                                               
+                        }                                                                                      
+                }                                                                                              
+}                           
+	
 string letter_grade;
 double Grade;
 cout << "What is your grade: " << endl;
 cin >> Grade;
 letter_grade = grader(Grade);
 string the_addendum = addendum(Grade);
-cout << "Your grade is: " << letter_grade << the_addendum << endl;
+cout << "Your final grade is: " << letter_grade << the_addendum << endl;
 
 return 0;
 }
