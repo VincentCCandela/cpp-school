@@ -20,10 +20,13 @@ return 0;
 string addendum(double a){
 double b = fmod(a,10);
 if (b >= 0 && b <=3){
-	return "-";
+	return " - ";
 	}
-else if (b >= 7 && b <0){
-	return "+";
+else if (b > 3 && b < 7){
+	return " ";
+	}
+else{
+	return " + ";
 	}
 }
 
