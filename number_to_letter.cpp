@@ -11,7 +11,7 @@ double Grade;
 cout << "What is your grade: " << endl;
 cin >> Grade;
 letter_grade = grader(Grade);
-cout << "Your grade is: " << letter_grade << endl;
+cout << "Your grade is: " << letter_grade << addendum(Grade) << endl;
 
 return 0;
 }
@@ -20,6 +20,9 @@ char addendum(double a){
 double b = fmod(a,10);
 if (b >= 0 && b <=3){
 	return '-';
+	}
+else if (b >= 7 && b <0)
+	return '+';
 	}
 }
 
