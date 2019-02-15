@@ -28,7 +28,7 @@ while(Grade != 101) {
                 cin >> Grade;                                                                                  
                 total = total + Grade;                                                                         
                 average = (total) / round;                                                                     
-                if(grade != 101){                                                                              
+                if(Grade != 101){                                                                              
                         cout << fixed << setprecision(3) << "Your average is: " << average << endl;            
                         }                                                                                      
                 else{                                                                                          
@@ -37,11 +37,10 @@ while(Grade != 101) {
                 }                                                                                              
 }                           
 	
-/*string letter_grade;
-double Grade;
+/*double Grade;
 cout << "What is your grade: " << endl;
 cin >> Grade; */
-letter_grade = grader(Grade);
+string letter_grade = grader(Grade);
 string the_addendum = addendum(Grade);
 cout << "Your final grade is: " << letter_grade << the_addendum << endl;
 
