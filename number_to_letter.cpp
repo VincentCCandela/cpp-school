@@ -25,11 +25,12 @@ while(Grade != 101) {
         else if(Grade != 101){                                                                                 
                 round++;                                                                                       
                 cout << "Enter your grade: " << endl;                                                          
-                cin >> Grade;                                                                                  
-                total = total + Grade;                                                                         
-                average = (total) / round;                                                                     
-                if(Grade != 101){                                                                              
-                        cout << fixed << setprecision(3) << "Your average is: " << average << endl;            
+                cin >> Grade;                                                                     
+                if(Grade != 101){
+			total = total + Grade;
+			average = (total) / round;
+                        cout << fixed << setprecision(3) << "Your average is: " << average << endl;
+			cout << "Which is a: " << grader(average) << addendum(average) << endl;
                         }                                                                                      
                 else{                                                                                          
                                                                                                                
@@ -42,14 +43,17 @@ cout << "What is your grade: " << endl;
 cin >> Grade; */
 char letter_grade = grader(average);
 string the_addendum = addendum(average);
-cout << "Your final grade is: " << letter_grade << the_addendum << endl;
+cout << "Your final grade is: " << average <<letter_grade << the_addendum << endl;
 
 return 0;
 }
 
 string addendum(double a){
 double b = fmod(a,10);
-if (b >= 0 && b <=3){
+if ( a >= 97){
+	return " + ";
+	}
+else if (b >= 0 && b <=3){
 	return " - ";
 	}
 else if (b > 3 && b < 7){
