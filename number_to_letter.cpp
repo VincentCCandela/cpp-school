@@ -1,5 +1,6 @@
 #include<iostream>
 #include<cmath>
+#include<iomanip>
 using namespace std;
 
 char grader(double grade);
@@ -7,27 +8,27 @@ string addendum(double a);
 
 int main(){
 
-double grade1, average, total;                                                                                  
+double Grade, average, total;                                                                                  
 int round = 1;                                                                                                 
                                                                                                                
 average = 0;                                                                                                   
 cout << "Enter your grade: " << endl;                                                                          
-cin >> grade1;                                                                                                  
+cin >> Grade;                                                                                                  
                                                                                                                
-average = grade1;                                                                                               
-total = grade1;                                                                                                 
+average = Grade;                                                                                               
+total = Grade;                                                                                                 
                                                                                                                
-while(grade1 != 101) {                                                                                          
-        if (grade1 == 101 ){                                                                                    
+while(Grade != 101) {                                                                                          
+        if (Grade == 101 ){                                                                                    
                                                                                                                
                 }                                                                                              
-        else if(grade1 != 101){                                                                                 
+        else if(Grade != 101){                                                                                 
                 round++;                                                                                       
                 cout << "Enter your grade: " << endl;                                                          
-                cin >> grade1;                                                                                  
-                total = total + grade1;                                                                         
+                cin >> Grade;                                                                                  
+                total = total + Grade;                                                                         
                 average = (total) / round;                                                                     
-                if(grade1 != 101){                                                                              
+                if(grade != 101){                                                                              
                         cout << fixed << setprecision(3) << "Your average is: " << average << endl;            
                         }                                                                                      
                 else{                                                                                          
@@ -36,10 +37,10 @@ while(grade1 != 101) {
                 }                                                                                              
 }                           
 	
-string letter_grade;
+/*string letter_grade;
 double Grade;
 cout << "What is your grade: " << endl;
-cin >> Grade;
+cin >> Grade; */
 letter_grade = grader(Grade);
 string the_addendum = addendum(Grade);
 cout << "Your final grade is: " << letter_grade << the_addendum << endl;
@@ -59,7 +60,6 @@ else{
 	return " + ";
 	}
 }
-
 
 char grader(double grade){
 if (grade >= 90){
@@ -92,5 +92,4 @@ else if (grade >= 10 && grade <20){
 else if (grade >= 0 && grade <10){                                        
 	return 'J';
 	}
-//return 'z';
 }
