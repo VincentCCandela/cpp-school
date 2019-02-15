@@ -40,7 +40,7 @@ while(Grade != 101) {
 /*double Grade;
 cout << "What is your grade: " << endl;
 cin >> Grade; */
-string letter_grade = grader(Grade);
+char letter_grade = grader(Grade);
 string the_addendum = addendum(Grade);
 cout << "Your final grade is: " << letter_grade << the_addendum << endl;
 
