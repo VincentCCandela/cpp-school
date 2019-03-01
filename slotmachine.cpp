@@ -16,7 +16,7 @@ int main() {
 		cout << "[" << secondone << "] [" << secondtwo << "] [" << secondthree << "]" << endl;	//outputs the numbers
 		cout << "[" << (((secondone+1)%3+1)+1)%3+1 << "] [" << (((secondtwo+1)%3+1)+1)%3+1 << "] [" << (((secondthree+1)%3+1)+1)%3+1 << "]" << endl; 	//outputs random numbers for the third row
 		
-		tokens = tokens - 1;
+		tokens = tokens - 1; //subtracts a token from playing
 		
 		if ( secondone == 1 && secondtwo == 1 && secondthree ==1){ //Gives the player 4 tokens for winnnig 1 in a row
 			cout << "You won 4 tokens!" << endl;
