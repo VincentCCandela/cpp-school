@@ -13,7 +13,7 @@ int main() {
 		int secondone = rand()%3+1, secondtwo = rand()%3+1, secondthree = rand()%3+1; //declares, initializes, and assignes the values for the second row
 		
 		cout << "[" << (secondone+1)%3+1 << "] [" << (secondtwo+1)%3+1 << "] [" << (secondthree+1)%3+1 << "]" << endl;	//outputs the numbers
-		cout << "[" << secondone << "] [" << secondtwo << "] [" << secondthree << "]" << endl;	//outputs the numbers
+		cout << "[" << secondone << "] [" << secondtwo << "] [" << secondthree << "]" << endl;	//outputs the numbers of the second line
 		cout << "[" << (((secondone+1)%3+1)+1)%3+1 << "] [" << (((secondtwo+1)%3+1)+1)%3+1 << "] [" << (((secondthree+1)%3+1)+1)%3+1 << "]" << endl; 	//outputs random numbers for the third row
 		
 		tokens = tokens - 1; //subtracts a token from playing
