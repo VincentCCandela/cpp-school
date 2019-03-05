@@ -38,9 +38,6 @@ while(Grade != 101) {
                 }                                                                                              
 }                           
 	
-/*double Grade;
-cout << "What is your grade: " << endl;
-cin >> Grade; */
 char letter_grade = grader(average);
 string the_addendum = addendum(average);
 cout << "Your final grade is: " << average <<letter_grade << the_addendum << endl;
