@@ -1,24 +1,24 @@
 #include<iostream>
 using namespace std;
 
-void swapper(double & num1, double & num2, double & temp);
+void swapper(double & num1, double & num2);
 
 int main ()
 {
-	double num1, num2, temp = 0;
+	double a, b;
 	cout << "Enter your first number" << endl;
-	cin >> num1;
+	cin >> a;
 	cout << "Enter your second number" << endl;
-	cin >> num2;
-	swapper(num1, num2, temp);
-	cout << "Your numbers are " << num1 << " " << num2 << endl;
+	cin >> b;
+	swapper(a, b);
+	cout << "Your numbers are " << a << " " << b << endl;
 	
 	return 0;
 }
 
-void swapper(double & num1, double & num2, double & temp) 
+void swapper(double & num1, double & num2) 
 {
-	temp = num1;
+	double temp = num1;
 	num1 = num2;
 	num2 = temp;
 		
