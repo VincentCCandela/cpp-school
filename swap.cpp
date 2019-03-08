@@ -3,8 +3,7 @@ using namespace std;
 
 void swapper(double & num1, double & num2);
 
-int main ()
-{
+int main (){
 	double a, b;
 	cout << "Enter your first number" << endl;
 	cin >> a;
@@ -16,8 +15,7 @@ int main ()
 	return 0;
 }
 
-void swapper(double & num1, double & num2) 
-{
+void swapper(double & num1, double & num2) {
 	double temp = num1;
 	num1 = num2;
 	num2 = temp;
