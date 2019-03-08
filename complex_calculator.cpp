@@ -12,6 +12,8 @@ using namespace std;
 // prototypes go here
 
 void input(double & real, double & imag);
+void output
+void addition(double & real1, double & imag1, double real2, double imag2);
 int main(void){
 
 	char choice;
@@ -37,13 +39,13 @@ int main(void){
 		switch(choice){
 		
 			case 'i':
-				input(A,B)
+				input(A,B);
 				//output A and B
-				//cout << A << " " << B << endl;
+				cout << "Your numbers are " << A << " + " << B << "i" << endl;
 				break;
 				
 			case '+':
-				//input C and D
+				input(C,D)
 				//add A B, C D
 				//output the new A B
 				break;
@@ -70,7 +72,10 @@ void input(double & real, double & imag){
 	cin >> imag;
 }
 
-
+void addition(double & real1, double & imag1, double real2, double imag2){
+	
+}
+	
 
 
 
