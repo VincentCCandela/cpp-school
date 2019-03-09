@@ -12,8 +12,10 @@ using namespace std;
 // prototypes go here
 
 void input(double & real, double & imag);
-void output
+void output(double & real, double & imag);
 void addition(double & real1, double & imag1, double real2, double imag2);
+void subtraction(double & real1, double & imag1, double real2, double imag2);
+
 int main(void){
 
 	char choice;
@@ -40,14 +42,18 @@ int main(void){
 		
 			case 'i':
 				input(A,B);
-				//output A and B
-				cout << "Your numbers are " << A << " + " << B << "i" << endl;
+				output(A,B);
 				break;
 				
 			case '+':
-				input(C,D)
-				//add A B, C D
-				//output the new A B
+				input(C,D);
+				addition(A,B,C,D);
+				output(A,B);
+				break;
+			case '-':
+				input(C,D);
+				subtraction(A,B,C,D);
+				output(A,B);
 				break;
 				
 	// complete rest of cases here
@@ -72,10 +78,19 @@ void input(double & real, double & imag){
 	cin >> imag;
 }
 
-void addition(double & real1, double & imag1, double real2, double imag2){
+void output(double & real, double & imag){
+	cout << real << " + " << imag << "i" << endl;	
 	
 }
-	
+void addition(double & real1, double & imag1, double real2, double imag2){
+	real1 = real1 + real2;
+	imag1 = imag1 + imag2;
+}
+void subtraction(double & real1, double & imag1, double real2, double imag2){
+	real1 = real1 - real2;
+	imag1 = imag1 - imag2;
+
+}
 
 
 
