@@ -112,13 +112,15 @@ void subtraction(double & real1, double & imag1, double real2, double imag2){		/
 }
 
 void multiplication(double & real1, double & imag1, double real2, double imag2){	//the multiplication function
-	real1 = (real1 * real2) - (imag1 * imag2);
-	imag1 = (real1 * imag2) + (real2 * imag1);
+	double swapvar = real1;
+	real1 = (swapvar * real2) - (imag1 * imag2);
+	imag1 = (swapvar * imag2) + (imag1 * real2);
 }
 
 void division(double & real1, double & imag1, double real2, double imag2){			//the division function
-	real1 = (real1 * real2 + imag1 * imag2) / (real2 * real2 + imag2 * imag2);
-	imag1 = (imag1 * real2 - real1 *  imag2) / (real2 * real2 + imag2 * imag2);
+	double swapvar = real1;
+	real1 = (swapvar * real2 + imag1 * imag2) / (real2 * real2 + imag2 * imag2);
+	imag1 = (imag1 * real2 - swapvar *  imag2) / (real2 * real2 + imag2 * imag2);
 }
 
 void length(double & real1, double & imag1, double & the_length){		//the length function
