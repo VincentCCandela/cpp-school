@@ -126,9 +126,3 @@ void division(double & real1, double & imag1, double real2, double imag2){			//t
 void length(double & real1, double & imag1, double & the_length){		//the length function
 	the_length = sqrt( real1 * real1 + imag1 * imag1 );
 }
-
-
-
-
-
-
