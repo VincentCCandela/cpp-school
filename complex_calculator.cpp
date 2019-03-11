@@ -17,7 +17,7 @@ void addition(double & real1, double & imag1, double real2, double imag2);
 void subtraction(double & real1, double & imag1, double real2, double imag2);
 void multiplication(double & real1, double & imag1, double real2, double imag2);
 void division(double & real1, double & imag1, double real2, double imag2);
-void length(double & rea1l, double & imag1);
+void length(double & rea1l, double & imag1, double & the_length);
 
 int main(void){
 
@@ -53,29 +53,30 @@ int main(void){
 				addition(A,B,C,D);
 				output(A,B);
 				break;
-			case '-':			//the 
+			case '-':			//the subtraction operation
 				input(C,D);
 				subtraction(A,B,C,D);
 				output(A,B);
 				break;
-			case '*':
+			case '*':			//the multiplication operation
 				input(C,D);
 				multiplication(A,B,C,D);
 				output(A,B);
 				break;
-			case '/':
+			case '/':			//the division operation
 				input(C,D);
 				division(A,B,C,D);
 				output(A,B);
 				break;
-			case 'l':
-				length(A,B);
+			case 'l':			//the length operation
+				length(A,B,C);
+				cout << fixed << setprecision(2) << "The length is: " << C << endl;
 				break;
-			case 'q':
+			case 'q':			//lets the user exit the calculator
 				cout << "Thanks for using our calculator!" << endl;
 				break;
 				
-			default:
+			default:			//tells the user to input a valid operation choice
 				cout << "Not a valid choice!" << endl;
 				break;
 		}
@@ -84,40 +85,44 @@ return 0;
 }
 // function definitions
 
-void input(double & real1, double & imag1){
+void input(double & real1, double & imag1){				//the input function
 	cout << "Enter the real number" << endl;
 	cin >> real1;
 	cout << "Enter the imaginary number" << endl;
 	cin >> imag1;
 }
 
-void output(double & real1, double & imag1){
-	cout << fixed << setprecision(2) << real1 << " + " << imag1 << "i" << endl;	
+void output(double & real1, double & imag1){			//the output function
+	if (imag1 < 0){
+		cout << fixed << setprecision(2) << real1 << " "<< imag1 << "i" << endl;			//outputs the number with a minus sign
+	}
+	else{
+		cout << fixed << setprecision(2) << real1 << " + " << imag1 << "i" << endl; //outputs the number with a plus sign
+	}
 	
 }
-void addition(double & real1, double & imag1, double real2, double imag2){
+void addition(double & real1, double & imag1, double real2, double imag2){		//the addition function
 	real1 = real1 + real2;
 	imag1 = imag1 + imag2;
 }
-void subtraction(double & real1, double & imag1, double real2, double imag2){
+void subtraction(double & real1, double & imag1, double real2, double imag2){		//the subtraction function
 	real1 = real1 - real2;
 	imag1 = imag1 - imag2;
 
 }
 
-void multiplication(double & real1, double & imag1, double real2, double imag2){
+void multiplication(double & real1, double & imag1, double real2, double imag2){	//the multiplication function
 	real1 = real1 * real2 - imag1 * imag2;
 	imag1 = real1 * imag2 + real2 * imag1;
 }
 
-void division(double & real1, double & imag1, double real2, double imag2){
+void division(double & real1, double & imag1, double real2, double imag2){			//the division function
 	real1 = (real1 * real2 + imag1 * imag2) / (real2 * real2 + imag2 * imag2);
 	imag1 = (imag1 * real2 - real1 *  imag2) / (real2 * real2 + imag2 * imag2);
 }
 
-void length(double & real1, double & imag1){
-	double the_length = sqrt( real1 * real1 + imag1 * imag1 );
-	cout << fixed << setprecision(2) << "The length is: " << the_length << endl;
+void length(double & real1, double & imag1, double & the_length){		//the length function
+	the_length = sqrt( real1 * real1 + imag1 * imag1 );
 }
 
 
