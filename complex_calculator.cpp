@@ -86,18 +86,18 @@ return 0;
 // function definitions
 
 void input(double & real1, double & imag1){				//the input function
-	cout << "Enter the real number" << endl;
+	cout << "Enter the real part" << endl;
 	cin >> real1;
-	cout << "Enter the imaginary number" << endl;
+	cout << "Enter the imaginary part" << endl;
 	cin >> imag1;
 }
 
 void output(double & real1, double & imag1){			//the output function
 	if (imag1 < 0){
-		cout << fixed << setprecision(2) << real1 << " "<< imag1 << "i" << endl;			//outputs the number with a minus sign
+		cout << fixed << setprecision(3) << "Current value: " << real1 << " "<< imag1 << "i" << endl;			//outputs the number with a minus sign
 	}
 	else{
-		cout << fixed << setprecision(2) << real1 << " + " << imag1 << "i" << endl; //outputs the number with a plus sign
+		cout << fixed << setprecision(3) << real1 << " + " << imag1 << "i" << endl; //outputs the number with a plus sign
 	}
 	
 }
@@ -112,8 +112,8 @@ void subtraction(double & real1, double & imag1, double real2, double imag2){		/
 }
 
 void multiplication(double & real1, double & imag1, double real2, double imag2){	//the multiplication function
-	real1 = real1 * real2 - imag1 * imag2;
-	imag1 = real1 * imag2 + real2 * imag1;
+	real1 = (real1 * real2) - (imag1 * imag2);
+	imag1 = (real1 * imag2) + (real2 * imag1);
 }
 
 void division(double & real1, double & imag1, double real2, double imag2){			//the division function
