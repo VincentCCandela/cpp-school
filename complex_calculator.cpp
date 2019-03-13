@@ -17,7 +17,7 @@ void addition(double & real1, double & imag1, double real2, double imag2);
 void subtraction(double & real1, double & imag1, double real2, double imag2);
 void multiplication(double & real1, double & imag1, double real2, double imag2);
 void division(double & real1, double & imag1, double real2, double imag2);
-void length(double & rea1l, double & imag1, double & the_length);
+double length(double & rea1l, double & imag1);
 
 int main(void){
 
@@ -69,8 +69,7 @@ int main(void){
 				output(A,B);
 				break;
 			case 'l':			//the length operation
-				length(A,B,C);
-				cout << fixed << setprecision(2) << "The length is: " << C << endl;
+				cout << fixed << setprecision(2) << "The length is: " << length(A,B) << endl;
 				break;
 			case 'q':			//lets the user exit the calculator
 				cout << "Thanks for using our calculator!" << endl;
@@ -124,6 +123,6 @@ void division(double & real1, double & imag1, double real2, double imag2){			//t
 	imag1 = (imag1 * real2 - swapvar *  imag2) / (real2 * real2 + imag2 * imag2);
 }
 
-void length(double & real1, double & imag1, double & the_length){		//the length function
-	the_length = sqrt( real1 * real1 + imag1 * imag1 );
+double length(double & real1, double & imag1){		//the length function
+	return sqrt(real1 * real1 + imag1 * imag1);
 }
