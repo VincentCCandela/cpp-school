@@ -93,11 +93,12 @@ void input(double & real1, double & imag1){				//the input function
 }
 
 void output(double & real1, double & imag1){			//the output function
+		
 	if (imag1 < 0){
-		cout << fixed << setprecision(3) << "Current value: " << real1 << " "<< imag1 << "i" << endl;			//outputs the number with a minus sign
+		cout << fixed << setprecision(2) << "Current value: " << real1 << " "<< imag1 << "i" << endl;			//outputs the number with a minus sign
 	}
-	else{
-		cout << fixed << setprecision(3) << real1 << " + " << imag1 << "i" << endl; //outputs the number with a plus sign
+	else if (imag1 >= 0){
+		cout << fixed << setprecision(2) << real1 << " + " << imag1 << "i" << endl; //outputs the number with a plus sign
 	}
 	
 }
