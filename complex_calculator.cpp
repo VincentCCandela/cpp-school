@@ -112,13 +112,13 @@ void subtraction(double & real1, double & imag1, double real2, double imag2){		/
 }
 
 void multiplication(double & real1, double & imag1, double real2, double imag2){	//the multiplication function
-	double swapvar = real1;
+	double swapvar = real1;			//a new swapvariable is created and is set to real1 because the real1 variable is changed when the new real1 is recalculated
 	real1 = (swapvar * real2) - (imag1 * imag2);
 	imag1 = (swapvar * imag2) + (imag1 * real2);
 }
 
 void division(double & real1, double & imag1, double real2, double imag2){			//the division function
-	double swapvar = real1;
+	double swapvar = real1;			//a new swapvariable is created and is set to real1 because the real1 variable is changed when the new real1 is recalculated
 	real1 = (swapvar * real2 + imag1 * imag2) / (real2 * real2 + imag2 * imag2);
 	imag1 = (imag1 * real2 - swapvar *  imag2) / (real2 * real2 + imag2 * imag2);
 }
