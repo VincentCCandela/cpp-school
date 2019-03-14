@@ -4,5 +4,4 @@ while :
 	git add *
 	git commit -m "an auto upload"
 	git push origin master
-	sleep 2
 	done
