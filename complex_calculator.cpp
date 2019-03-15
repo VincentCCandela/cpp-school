@@ -70,6 +70,7 @@ int main(void){
 				break;
 			case 'l':			//the length operation
 				cout << fixed << setprecision(2) << "The length is: " << length(A,B) << endl;
+				output(A,B);
 				break;
 			case 'q':			//lets the user exit the calculator
 				cout << "Thanks for using our calculator!" << endl;
@@ -97,7 +98,7 @@ void output(double & real1, double & imag1){			//the output function
 		cout << fixed << setprecision(2) << "Current value: " << real1 << " "<< imag1 << "i" << endl;			//outputs the number with a minus sign
 	}
 	else if (imag1 >= 0){
-		cout << fixed << setprecision(2) << real1 << " + " << imag1 << "i" << endl; //outputs the number with a plus sign
+		cout << fixed << setprecision(2) << "Current value: " << real1 << " + " << imag1 << "i" << endl; //outputs the number with a plus sign
 	}
 	
 }
