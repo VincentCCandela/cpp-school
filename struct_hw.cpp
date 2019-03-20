@@ -42,5 +42,38 @@ int main (){
 		cout << "Your OS is not common." << endl;
 	}
 	
+	os mac;
+	
+	cout << "What is the name of your program" << endl;
+	cin >> mac.name;
+	
+	cout << "What is the version of your OS?" << endl;
+	cin >> mac.version;
+	
+	while (mac.fast != 'y' && mac.fast != 'Y'  &&  mac.fast != 'n' && mac.fast != 'N') {
+		cout << "Is your OS fast? (y/n)" << endl;
+		cin >> mac.fast;
+	}
+	
+	if (mac.fast == 'y' || mac.fast == 'Y'){
+		cout << "Your OS is fast." << endl;
+	}
+	else {
+		cout << "Your OS is not fast." << endl;
+	}
+
+	
+	while (mac.common != 'y' && mac.common != 'Y'  &&  mac.common != 'n' && mac.common != 'N') {
+		cout << "Is your OS common? (y/n)" << endl;
+		cin >> mac.common;
+	}
+	
+	if (mac.common == 'y' || mac.common == 'Y'){
+		cout << "Your OS is common." << endl;
+	}
+	else {
+		cout << "Your OS is not common." << endl;
+	}
+	
 	return 0;
 }
