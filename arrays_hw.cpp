@@ -17,13 +17,13 @@ int main(){
 	for (i = 0; i < 50; i++){ //a for loop to generate each of the 50 random numbers of the array and check if each of those numbers is odd or even, and lastly to report the sign of each number for a total count of even and odd numbers
 		
 		grades[i] = rand()%101; //generator for the random numbers
-		cout << grades[i] << endl; // outputs each random number
+		cout << grades[i] << endl; //outputs each random number
 		
 		if((grades[i] % 2) == 0){ //checks and reports the signs of each of the numbers
-			evens++; //if the number is even, the the even counter is increased by one
+			evens++; //if the number is even, then the even counter is increased by one
 		}
 		else{
-			odds++; //if the number is odd, the the odd counter is increased by one
+			odds++; //if the number is odd, then the odd counter is increased by one
 		}
 	}
 	
