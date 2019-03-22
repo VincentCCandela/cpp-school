@@ -18,7 +18,8 @@ int main(){
 		cout << grades[i] << endl;
 	}
 	
-	int num;
+	int num, order;
+	char choice;
 	
 	cout << "How many items should go into the menu?" << endl;
 	cin >> num;
@@ -38,6 +39,22 @@ int main(){
 	for (int i = 0; i < sise; i++){
 		cout << i+1 << ")" << menu[i] << endl;
 	}
+		
+	cout << "Would you like to order something off your menu? (y/n)" << endl;
+	cin >> choice;
+	
+	if (choice == 'n' || choice == 'N'){
+		cout << "No more food for you!" << endl;
+	}
+	else{
+		cout << "Which item will you like to get? (1-" << sise << ")" << endl;
+		cin >> order;
+		
+		cout << endl;
+		cout << "I hope you enjoy your " << menu[order - 1] << "!" << endl;
+	}
+	
+	cout << "Thank you and come again!" << endl;
 		
 	return 0;
 }
