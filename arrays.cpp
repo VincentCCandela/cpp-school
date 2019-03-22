@@ -32,7 +32,6 @@ int main(){
 	
 	cin.ignore();
 	for (int i = 0; i < sise; i++){
-		//cin >> menu[i];
 		getline(cin,menu[i]);
 	}
 	
