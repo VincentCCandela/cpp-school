@@ -6,7 +6,11 @@ using namespace std;
 int main(){
 	srand(time(NULL));
 
-	const int size = 20;
+	int array_size;
+	cout << "Enter the array size" << endl;
+	cin >> array_size;
+	
+	const int size = array_size;
 	int grades[size];
 	
 	for (int i = 0; i < size; i++){
@@ -14,16 +18,15 @@ int main(){
 		cout << grades[i] << endl;
 	}
 	
-	//the old code
+		
+	cout << "How many items should go into the menu?" << endl;
+	cin >> num;
 	
-	/*double gpas[size] = {3.4,34,456,235,4357,1234,3546,4321335};
-	cout << "gpas[1] is: " << gpas[1] << endl;
+	const int sise = num;
 	
-	for (int i = 0; i < size ;i++){
-		cout << "Student " << i + 1 << " has the grade of: " << gpas[i] << endl;
-	}
-	*/
+	string menu[sise];
 	
-	
+	cout << "Enter the items you want on the menu!" << endl;
+		
 	return 0;
 }
