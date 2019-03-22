@@ -18,7 +18,8 @@ int main(){
 		cout << grades[i] << endl;
 	}
 	
-		
+	int num;
+	
 	cout << "How many items should go into the menu?" << endl;
 	cin >> num;
 	
@@ -27,6 +28,16 @@ int main(){
 	string menu[sise];
 	
 	cout << "Enter the items you want on the menu!" << endl;
+	
+	for (int i = 0; i < sise; i++){
+		cin >> menu[i];
+	}
+	
+	cout << "Here is your newly created menu" << endl;
+	
+	for (int i = 0; i < sise; i++){
+		cout << i+1 << ")" << menu[i] << endl;
+	}
 		
 	return 0;
 }
