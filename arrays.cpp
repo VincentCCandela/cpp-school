@@ -30,8 +30,10 @@ int main(){
 	
 	cout << "Enter the items you want on the menu!" << endl;
 	
+	cin.ignore();
 	for (int i = 0; i < sise; i++){
-		cin >> menu[i];
+		//cin >> menu[i];
+		getline(cin,menu[i]);
 	}
 	
 	cout << "Here is your newly created menu" << endl;
