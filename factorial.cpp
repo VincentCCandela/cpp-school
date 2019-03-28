@@ -1,23 +1,25 @@
 #include<iostream>
 using namespace std;
 
-string factorial(int num);
+void factorial(int num);
 
 int main(){
-
+	int number;
+	
 	cout << "Input a number to factorialize" << endl;
 	cin >> number;
-	factorial(number);
+	cout << "Your number is: :" << factorial(number);
 
 return 0;
 }
 
-string factorial(int num){
+void factorial(int num){
 	if(num == 0 || num == 1){
-		return "1";
+		cout << "1";
 	}
 	else {
-		return num
-		cout << num << "*" << factorial(num - 1);
-
+		cout << num << "*";
+		num = num - 1;
+		cout << factorial(num);
+	}
 }
