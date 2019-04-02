@@ -12,7 +12,7 @@ int main() {
 	
 	int grades[size];
 	
-	cout << "The grades of the function are: ";
+	cout << "The grades of the function are: " << endl;
 
 	for (int i = 0; i < size ; i++){
 		grades[i] = rand() % 100 + 1;
