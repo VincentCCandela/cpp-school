@@ -1,6 +1,6 @@
 #!/bin/bash
 while :
-	do
+	do 
 	git add *
 	git commit -m "an auto upload"
 	git push origin master
