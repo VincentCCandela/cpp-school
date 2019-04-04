@@ -48,14 +48,24 @@ int main(){
 		}
 		
 		cout << endl;
-		
-		if (three_of_a_kind(dice) == true){
-			cout << "You have a three of a kind." << endl;
+
+		if(yahtzee(dice) == true){
+			cout << "You have a yahtzee!" << endl;
 		}
 		else if(four_of_a_kind(dice) == true){
-			cout << "You have a four of a kind." << endl
+			cout << "You have a four of a kind." << endl; 
+		}
+		else if (full_house(dice) == true){
+			cout << "You have a full house." << endl;
+		}
+		else if (three_of_a_kind(dice) == true){
+			cout << "You have a three of a kind." << endl;
+		}
+		else{
+			cout << "Your chance score is: " << chance(dice) << endl;
 		}
 		
+		cout << " " << endl;
 	}
 	
 	cout << "Thanks for playing!" << endl;
@@ -63,7 +73,7 @@ int main(){
 }
 
 bool three_of_a_kind(int array[]){
-	if (array[0] == array[2] || array[1] == array[3] || array[2] == array[4] || array[3] == array[5]){
+	if (array[0] == array[2] || array[1] == array[3] || array[2] == array[4]){
 		return true;
 	}
 	else{
@@ -72,12 +82,52 @@ bool three_of_a_kind(int array[]){
 }
 
 bool four_of_a_kind(int array[]){
-	if (array[0] == array[3] || array[1] == array[4] || array[2] == array[5]){
+	if (array[0] == array[3] || array[1] == array[4]){
 		return true;
 	}
 	else{
 		return false;
 	}
+}
+
+bool yahtzee(int array[]){
+	if (array[0] == array[4]){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+int chance(int array[]){
+	return array[0] + array[1] + array[2] + array[3] + array[4];
+}
+
+bool full_house(int array[]){
+	if((array[0] == array[1] && array[2] == array[4]) || ( array[0] == array[2] && array[3] == array[4]) ){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+bool small_straight(int array[]){
+	int start_int1 = array[0];
+	int start_int2 = array[1];
+	for(int i = 0; i < size - 1; i++){
+		if(array[i + 1] == start_int + 1){
+		start_int = start_int + 1;
+		}
+		else if(array[i - 1] == array[i - 2] + 1){
+		}
+		else{
+			return false;
+		}
+	}
+	
+	return true;
+		
 }
 
 void inserter (int array[]){
