@@ -8,7 +8,7 @@ using namespace std;
 bool three_of_a_kind(int array[]);
 bool four_of_a_kind(int array[]);
 bool full_house(int array[]);
-bool small_straight(int array[]);
+bool small_straight(int array[], int place, int iteration);
 bool large_straight(int array[]);
 bool yahtzee(int array[]);
 int chance(int array[]);
@@ -61,6 +61,9 @@ int main(){
 		else if (three_of_a_kind(dice) == true){
 			cout << "You have a three of a kind." << endl;
 		}
+		else if(small_straight(dice, 0, 1) == true || small_straight(dice, 1, 1) == true ){
+			cout << "You have a small straight" << endl;
+		}
 		else{
 			cout << "Your chance score is: " << chance(dice) << endl;
 		}
@@ -112,10 +115,35 @@ bool full_house(int array[]){
 	}
 }
 
-bool small_straight(int array[]){
-	int start_int1 = array[0];
-	int start_int2 = array[1];
-	for(int i = 0; i < size - 1; i++){
+bool small_straight(int array[], int place, int iteration){
+	if(iteration == 4){
+		return true;
+	}
+	else if( (array[place + 1] = array[place]) && iteration < 4 ){
+		small_straight(array, place + 1, iteration + 1);
+	}
+	else{
+		return false;
+	}
+	
+	
+	/*
+	if(array[1] == array[0] + 1 && (array[2] == array[1] + 1 && array[3] = array[2] + 1)){
+		return true;
+	}
+	else if(array[2] == array[1] + 1 && (array[3] = array[2] + 1 && array[4] == array[3] + 1))
+		return true;
+	else{
+		return false;
+	}
+	*/
+
+	//int end1 = 5, end2 = 6;
+	//if()
+
+
+
+/*	for(int i = 0; i < size - 1; i++){
 		if(array[i + 1] == start_int + 1){
 		start_int = start_int + 1;
 		}
@@ -127,7 +155,7 @@ bool small_straight(int array[]){
 	}
 	
 	return true;
-		
+*/		
 }
 
 void inserter (int array[]){
