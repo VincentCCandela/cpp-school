@@ -2,16 +2,16 @@
 #include<iomanip>
 using namespace std;
 
-//simpler/lower version of yahtzee
+//This is a simpler/lower version of yahtzee
 
 
 bool three_of_a_kind(int array[]);
 bool four_of_a_kind(int array[]);
 bool full_house(int array[]);
 bool small_straight(int array[], int place, int iteration);
-bool large_straight(int array[]);
+bool large_straight(int array[], int place, int iteration);
 bool yahtzee(int array[]);
-int chance(int array[]);
+int totaller(int array[]);
 
 void inserter (int arrary[]);
 void swap(int & a, int & b);
@@ -27,7 +27,7 @@ int main(){
 		cout << "Do you want to role the dice?" << endl;
 		cin >> response;
 		
-		int dice[size];
+		int dice[size],total_points;
 		
 		cout << " *Rolls dice* " << endl;
 		cout << "You have rolled: ";
@@ -50,24 +50,36 @@ int main(){
 		cout << endl;
 
 		if(yahtzee(dice) == true){
-			cout << "You have a yahtzee!" << endl;
+			cout << "You have rolled a yahtzee! +50 points!" << endl;
+			total_points = total_points + 50;
 		}
 		else if(four_of_a_kind(dice) == true){
-			cout << "You have a four of a kind." << endl; 
+			cout << "You have rolled a four of a kind. +" << totaller(dice) << " points!" << endl; 
+			total_points = total_points + totaller(dice);
 		}
 		else if (full_house(dice) == true){
-			cout << "You have a full house." << endl;
+			cout << "You have rolled a full house. +25 points!" << endl;
+			total_points = total_points + 25;
 		}
 		else if (three_of_a_kind(dice) == true){
-			cout << "You have a three of a kind." << endl;
+			cout << "You have rolled a three of a kind. +" << totaller(dice) << " points!" << endl;
+			total_points = total_points + totaller(dice);
 		}
-		else if(small_straight(dice, 0, 1) == true || small_straight(dice, 1, 1) == true ){
-			cout << "You have a small straight" << endl;
+		else if(large_straight(dice,0,0) == true){
+			cout << "You have rolled a large straight. +40 points!" << endl;
+			total_points = total_points + 40;
+		}
+		else if(small_straight(dice, 0, 0) == true || small_straight(dice, 1, 0) == true ){
+			cout << "You have rolled a small straight. + 30 points!" << endl;
+			total_points = total_points + 30;
 		}
 		else{
-			cout << "Your chance score is: " << chance(dice) << endl;
+			cout << "You have rolled nothing." << endl;
+			cout << "Chance for " << totaller(dice) << " points." << endl;
+			total_points = total_points + totaller(dice);
 		}
 		
+		cout << "You have: " << total_points << " points in total." << endl;			
 		cout << " " << endl;
 	}
 	
@@ -102,7 +114,7 @@ bool yahtzee(int array[]){
 	}
 }
 
-int chance(int array[]){
+int totaller(int array[]){
 	return array[0] + array[1] + array[2] + array[3] + array[4];
 }
 
@@ -115,47 +127,30 @@ bool full_house(int array[]){
 	}
 }
 
-bool small_straight(int array[], int place, int iteration){
+bool large_straight(int array[], int place, int iteration){
 	if(iteration == 4){
 		return true;
 	}
-	else if( (array[place + 1] = array[place]) && iteration < 4 ){
+	else if( array[place + 1] == array[place] + 1 ){
+		large_straight(array, place + 1, iteration + 1);
+	}
+	else{
+		return false;
+	}
+	
+}
+
+bool small_straight(int array[], int place, int iteration){
+	if(iteration == 3){
+		return true;
+	}
+	else if( array[place + 1] == array[place] +1 ){
 		small_straight(array, place + 1, iteration + 1);
 	}
 	else{
 		return false;
 	}
-	
-	
-	/*
-	if(array[1] == array[0] + 1 && (array[2] == array[1] + 1 && array[3] = array[2] + 1)){
-		return true;
-	}
-	else if(array[2] == array[1] + 1 && (array[3] = array[2] + 1 && array[4] == array[3] + 1))
-		return true;
-	else{
-		return false;
-	}
-	*/
 
-	//int end1 = 5, end2 = 6;
-	//if()
-
-
-
-/*	for(int i = 0; i < size - 1; i++){
-		if(array[i + 1] == start_int + 1){
-		start_int = start_int + 1;
-		}
-		else if(array[i - 1] == array[i - 2] + 1){
-		}
-		else{
-			return false;
-		}
-	}
-	
-	return true;
-*/		
 }
 
 void inserter (int array[]){
