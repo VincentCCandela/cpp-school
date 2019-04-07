@@ -140,20 +140,20 @@ bool large_straight(int array[], int place, int iteration){	// checks if the pla
 	
 }
 
-bool small_straight(int array[], int place, int iteration){
-	if(iteration == 3){
+bool small_straight(int array[], int place, int iteration){	//checks if the player has rolled a small straight using a recursive algorithm 
+	if(iteration == 3){	//the algorithm needs to pass three iterations in order to be true
 		return true;
 	}
-	else if( array[place + 1] == array[place] +1 ){
-		small_straight(array, place + 1, iteration + 1);
+	else if( array[place + 1] == array[place] +1 ){	//if n2 = n1 + 1, then the function is recursively called
+		small_straight(array, place + 1, iteration + 1);	//when the function is called again with place + 1 and iteration + 1
 	}
 	else{
-		return false;
+		return false;	//if the array fails either test, then the array is not a small straight
 	}
 
 }
 
-void inserter (int array[]){
+void inserter (int array[]){	//the insertion sorting algorthm which sorts the integers in the array from least to greatest
 	for(int i = 0; i < size; i++){
 		int j = i;
 		while((j > 0) && (array[j - 1] > array[j])){
@@ -163,7 +163,7 @@ void inserter (int array[]){
 	}
 }
 
-void swap(int & a, int & b){
+void swap(int & a, int & b){	//a function that swaps two variables
 	int tempvar = a;
 	a = b;
 	b = tempvar;
