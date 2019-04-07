@@ -87,8 +87,8 @@ int main(){
 	return 0;
 }
 
-bool three_of_a_kind(int array[]){
-	if (array[0] == array[2] || array[1] == array[3] || array[2] == array[4]){
+bool three_of_a_kind(int array[]){	//a function to check if the dice array is a three of a kind
+	if (array[0] == array[2] || array[1] == array[3] || array[2] == array[4]){	//if the first and third numbers are the same, then the second number must be the same since the array is in ascending order.
 		return true;
 	}
 	else{
@@ -96,8 +96,8 @@ bool three_of_a_kind(int array[]){
 	}
 }
 
-bool four_of_a_kind(int array[]){
-	if (array[0] == array[3] || array[1] == array[4]){
+bool four_of_a_kind(int array[]){	//checks if the player has rolled a four of a kind
+	if (array[0] == array[3] || array[1] == array[4]){	//if the first and fourth numbers are the same, then the second and third numbers must be the same since the array is in ascending order.
 		return true;
 	}
 	else{
@@ -105,8 +105,8 @@ bool four_of_a_kind(int array[]){
 	}
 }
 
-bool yahtzee(int array[]){
-	if (array[0] == array[4]){
+bool yahtzee(int array[]){	//checks if the player has rolled a yahtzee
+	if (array[0] == array[4]){	//if the first and last numbers are the same, because the numbers are in asceind order, then all the numbers in between will be equal to the checked endpoints
 		return true;
 	}
 	else{
@@ -114,11 +114,11 @@ bool yahtzee(int array[]){
 	}
 }
 
-int totaller(int array[]){
+int totaller(int array[]){	//adds up all the numbers in the array
 	return array[0] + array[1] + array[2] + array[3] + array[4];
 }
 
-bool full_house(int array[]){
+bool full_house(int array[]){	//checks if the player has scored a full house: if the first two and second three numbers or the first three and second two numbers are the same, then the player has scored a full house
 	if((array[0] == array[1] && array[2] == array[4]) || ( array[0] == array[2] && array[3] == array[4]) ){
 		return true;
 	}
