@@ -5,32 +5,32 @@ using namespace std;
 //This is a simpler/lower version of yahtzee
 
 
-bool three_of_a_kind(int array[]);
-bool four_of_a_kind(int array[]);
-bool full_house(int array[]);
-bool small_straight(int array[], int place, int iteration);
-bool large_straight(int array[], int place, int iteration);
-bool yahtzee(int array[]);
-int totaller(int array[]);
+bool three_of_a_kind(int array[]); //a function to determine if a three of a kind has been rolled
+bool four_of_a_kind(int array[]);	//a function to determine if a four of a kind has been rolled
+bool full_house(int array[]);	//a function to determine if a full house has been rolled
+bool small_straight(int array[], int place, int iteration);	//a function to determine if a small straight has been rolled
+bool large_straight(int array[], int place, int iteration);	//a function to determine if a large straight has been rolled
+bool yahtzee(int array[]);	//a function to determine if a yahtzee has been rolled
+int totaller(int array[]);	//adds up all the numbers in the dice
 
-void inserter (int arrary[]);
-void swap(int & a, int & b);
+void inserter (int arrary[]);	//makes the dice go in ascending order
+void swap(int & a, int & b);	//swaps two integers
 
-const int size = 5;
+const int size = 5; //sets the number of the array of the dice to five
 
 int main(){
-	srand(time(NULL));
+	srand(time(NULL));	//sets the seed for the random number generator to random
 	
-	char response = 'y';
+	char response = 'y';	//declares the response variable to whether the player wants to play and intializes it to 'y' so that the player may play
 	
-	while( response == 'y' || response == 'Y'){
-		cout << "Do you want to role the dice?" << endl;
-		cin >> response;
+	while( response == 'y' || response == 'Y'){	//while the response variable is 'Y' or 'y', which the indicates the player wants to play, the main loop of the program will run 
+		cout << "Do you want to role the dice? (y/n)" << endl;	//asks if the player wants to play
+		cin >> response;	//inputs the player's response to whether or not they want to play
 		
-		int dice[size],total_points;
+		int dice[size],total_points; //declares the array for the dice and the variable for the total number of points the player has amassed
 		
-		cout << " *Rolls dice* " << endl;
-		cout << "You have rolled: ";
+		cout << " *Rolls dice* " << endl;	//mentions that the dice have been rolled
+		cout << "You have rolled: ";	//The first part of the statement of the number's of the dice rolled, the actual nubmers are outputted in a later for loop
 		
 		for (int i = 0; i < size ; i++){
 			dice[i] = rand() % 6 + 1;
