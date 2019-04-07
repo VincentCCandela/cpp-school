@@ -127,14 +127,14 @@ bool full_house(int array[]){	//checks if the player has scored a full house: if
 	}
 }
 
-bool large_straight(int array[], int place, int iteration){
-	if(iteration == 4){
+bool large_straight(int array[], int place, int iteration){	// checks if the player has score a large straight using a recursive algorithm
+	if(iteration == 4){	//if the array has passed all four iterations, then the player has scored a large straight
 		return true;
 	}
-	else if( array[place + 1] == array[place] + 1 ){
-		large_straight(array, place + 1, iteration + 1);
+	else if( array[place + 1] == array[place] + 1 ){	//if place n2 = n1 + 1, then the function is called recursively
+		large_straight(array, place + 1, iteration + 1);	//when this function is called, the place number and iteration number are increased 
 	}
-	else{
+	else{	//if either else loop is failed, then the array is not a large straight
 		return false;
 	}
 	
