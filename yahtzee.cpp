@@ -32,58 +32,58 @@ int main(){
 		cout << " *Rolls dice* " << endl;	//mentions that the dice have been rolled
 		cout << "You have rolled: ";	//The first part of the statement of the number's of the dice rolled, the actual nubmers are outputted in a later for loop
 		
-		for (int i = 0; i < size ; i++){
-			dice[i] = rand() % 6 + 1;
+		for (int i = 0; i < size ; i++){	//a for loop which creates each of the random numbers of the array of dice and outputs each of them
+			dice[i] = rand() % 6 + 1;	
 			cout << dice[i];		
 		}
 		
-		cout << endl;
+		cout << endl;	//skips a line for clarity of each play
 		
-		inserter(dice);
+		inserter(dice);	//uses the inserter program to realign the dice from least to greatest
 		
-		cout << "Your sorted dice are: ";
+		cout << "Your sorted dice are: ";	//the first part of the statement of what the realigned dice are
 		
-		for (int i = 0; i < size ; i++){
+		for (int i = 0; i < size ; i++){	//outputs each of the realigned dice
 			cout << dice[i];		
 		}
 		
-		cout << endl;
+		cout << endl;	//skips a line 
 
-		if(yahtzee(dice) == true){
+		if(yahtzee(dice) == true){	//checks if the player has rolled a yahtzee, if they have, the player is informed of their roll and the points they've earned
 			cout << "You have rolled a yahtzee! +50 points!" << endl;
 			total_points = total_points + 50;
 		}
-		else if(four_of_a_kind(dice) == true){
+		else if(four_of_a_kind(dice) == true){	//checks if the player has rolled a four of a kind, if they have, the player is informed of their roll and the points they've earned
 			cout << "You have rolled a four of a kind. +" << totaller(dice) << " points!" << endl; 
 			total_points = total_points + totaller(dice);
 		}
-		else if (full_house(dice) == true){
+		else if (full_house(dice) == true){	//checks if the player has rolled a full house, if they have, the player if informed of their roll and the points they've earned
 			cout << "You have rolled a full house. +25 points!" << endl;
 			total_points = total_points + 25;
 		}
-		else if (three_of_a_kind(dice) == true){
+		else if (three_of_a_kind(dice) == true){	//checks if the player has rolled a three of a kind, if they have, the player is informed of their roll and the points they've earned
 			cout << "You have rolled a three of a kind. +" << totaller(dice) << " points!" << endl;
 			total_points = total_points + totaller(dice);
 		}
-		else if(large_straight(dice,0,0) == true){
+		else if(large_straight(dice,0,0) == true){	//checks if the player has rolled a large straight, if they have, the player is informed of their roll and the points they've earned
 			cout << "You have rolled a large straight. +40 points!" << endl;
 			total_points = total_points + 40;
 		}
-		else if(small_straight(dice, 0, 0) == true || small_straight(dice, 1, 0) == true ){
+		else if(small_straight(dice, 0, 0) == true || small_straight(dice, 1, 0) == true ){	//checks if the player has rolled a small straight, if they have, the player is informed of their roll and the points they've earned
 			cout << "You have rolled a small straight. + 30 points!" << endl;
 			total_points = total_points + 30;
 		}
-		else{
+		else{	//if the player hasn't rolled anything useful, the player is informed of their roll and their score is the sum of the numbers that they've rolled
 			cout << "You have rolled nothing." << endl;
 			cout << "Chance for " << totaller(dice) << " points." << endl;
 			total_points = total_points + totaller(dice);
 		}
 		
-		cout << "You have: " << total_points << " points in total." << endl;			
-		cout << " " << endl;
+		cout << "You have: " << total_points << " points in total." << endl;	//outputs the player's total points 		
+		cout << endl;	//and skips a line before restarting the while loop
 	}
 	
-	cout << "Thanks for playing!" << endl;
+	cout << "Thanks for playing!" << endl;	//if the player has exited the while loop by responding with a 'n' in the while loop, the player is thanked for playing
 	return 0;
 }
 
