@@ -132,7 +132,7 @@ int large_straight(int array[], int place, int iteration){	// checks if the play
 		return 1 + large_straight(array, place + 1, iteration + 1);	//when this function is called, the place number and iteration number are increased 
 	}
 	else{
-		return 0;
+		return 0; //if not, then nothing is returned
 	}
 }
 
