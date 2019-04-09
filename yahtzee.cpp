@@ -9,8 +9,8 @@ using namespace std;
 bool three_of_a_kind(int array[]); //a function to determine if a three of a kind has been rolled
 bool four_of_a_kind(int array[]);	//a function to determine if a four of a kind has been rolled
 bool full_house(int array[]);	//a function to determine if a full house has been rolled
-bool small_straight(int array[], int place, int iteration);	//a function to determine if a small straight has been rolled
-bool large_straight(int array[], int place, int iteration);	//a function to determine if a large straight has been rolled
+int small_straight(int array[], int place, int iteration);	//a function to determine if a small straight has been rolled
+int large_straight(int array[], int place, int iteration);	//a function to determine if a large straight has been rolled
 bool yahtzee(int array[]);	//a function to determine if a yahtzee has been rolled
 int totaller(int array[]);	//adds up all the numbers in the dice
 
@@ -75,11 +75,11 @@ int main(){
 		
 		//cleaner(dice1);
 		
-		else if(large_straight(dice, 0, 0) == true){	//checks if the player has rolled a large straight, if they have, the player is informed of their roll and the points they've earned
+		else if(large_straight(dice, 0, 0) == 1){	//checks if the player has rolled a large straight, if they have, the player is informed of their roll and the points they've earned
 			cout << "You have rolled a large straight. +40 points!" << endl;
 			total_points = total_points + 40;
 		}
-		else if(small_straight(dice, 0, 0) == true || small_straight(dice, 1, 0) == true ){	//checks if the player has rolled a small straight, if they have, the player is informed of their roll and the points they've earned
+		else if(small_straight(dice, 0, 0) == 1 || small_straight(dice, 1, 0) == 1 ){	//checks if the player has rolled a small straight, if they have, the player is informed of their roll and the points they've earned
 			cout << "You have rolled a small straight. + 30 points!" << endl;
 			total_points = total_points + 30;
 		}
@@ -137,21 +137,21 @@ bool full_house(int array[]){	//checks if the player has scored a full house: if
 	}
 }
 
-bool large_straight(int array[], int place, int iteration){	// checks if the player has score a large straight using a recursive algorithm
+int large_straight(int array[], int place, int iteration){	// checks if the player has score a large straight using a recursive algorithm
 	if( iteration == 4 ){	//if the array has passed all four iterations, then the player has scored a large straight
-		return true;
+		return 1;
 	}
 	else if ( array[place + 1] == array[place] + 1 ){	//if place n2 = n1 + 1, then the function is called recursively
 		large_straight(array, place + 1, iteration + 1);	//when this function is called, the place number and iteration number are increased 
 	}
 	else{
-		return false;
+		return 0;
 	}
 }
 
-bool small_straight(int array[], int place, int iteration){	//checks if the player has rolled a small straight using a recursive algorithm 
+int small_straight(int array[], int place, int iteration){	//checks if the player has rolled a small straight using a recursive algorithm 
 	if(iteration == 3){	//the algorithm needs to pass three iterations in order to be true
-		return true;
+		return 1;
 	}
 	else if( array[place + 1] == array[place] + 1 ){	//if n2 = n1 + 1, then the function is recursively called
 		small_straight(array, place + 1, iteration + 1);	//when the function is called again with place + 1 and iteration + 1
@@ -160,7 +160,7 @@ bool small_straight(int array[], int place, int iteration){	//checks if the play
 		small_straight(array, place + 1, iteration);
 	}
 	else{
-		return false;	//if the array fails either test, then the array is not a small straight
+		return 0;	//if the array fails either test, then the array is not a small straight
 	}
 }
 
