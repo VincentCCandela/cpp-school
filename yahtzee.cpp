@@ -65,11 +65,11 @@ int main(){
 			total_points = total_points + 20;
 		}
 				
-		else if(large_straight(dice, 0, 0) == 1){	//checks if the player has rolled a large straight, if they have, the player is informed of their roll and the points they've earned
+		else if(large_straight(dice, 0, 0) == 4){	//checks if the player has rolled a large straight, if they have, the player is informed of their roll and the points they've earned
 			cout << "You have rolled a large straight. +40 points!" << endl;
 			total_points = total_points + 40;
 		}
-		else if(small_straight(dice, 0, 0) == 1 || small_straight(dice, 1, 0) == 1 ){	//checks if the player has rolled a small straight, if they have, the player is informed of their roll and the points they've earned
+		else if(small_straight(dice, 0, 0) == 3 || small_straight(dice, 1, 0) == 3 ){	//checks if the player has rolled a small straight, if they have, the player is informed of their roll and the points they've earned
 			cout << "You have rolled a small straight. + 30 points!" << endl;
 			total_points = total_points + 30;
 		}
@@ -128,11 +128,8 @@ bool full_house(int array[]){	//checks if the player has scored a full house: if
 }
 
 int large_straight(int array[], int place, int iteration){	// checks if the player has score a large straight using a recursive algorithm
-	if( iteration == 4 ){	//if the array has passed all four iterations, then the player has scored a large straight
-		return 1;
-	}
-	else if ( array[place + 1] == array[place] + 1 ){	//if place n2 = n1 + 1, then the function is called recursively
-		large_straight(array, place + 1, iteration + 1);	//when this function is called, the place number and iteration number are increased 
+	if ( array[place + 1] == array[place] + 1 ){	//if place n2 = n1 + 1, then the function is called recursively
+		return 1 + large_straight(array, place + 1, iteration + 1);	//when this function is called, the place number and iteration number are increased 
 	}
 	else{
 		return 0;
@@ -140,14 +137,11 @@ int large_straight(int array[], int place, int iteration){	// checks if the play
 }
 
 int small_straight(int array[], int place, int iteration){	//checks if the player has rolled a small straight using a recursive algorithm 
-	if(iteration == 3){	//the algorithm needs to pass three iterations in order to be true
-		return 1;
-	}
-	else if( array[place + 1] == array[place] + 1 ){	//if n2 = n1 + 1, then the function is recursively called
-		small_straight(array, place + 1, iteration + 1);	//when the function is called again with place + 1 and iteration + 1
+	if( array[place + 1] == array[place] + 1 ){	//if n2 = n1 + 1, then the function is recursively called
+		return 1 + small_straight(array, place + 1, iteration + 1);	//when the function is called again with place + 1 and iteration + 1
 	}
 	else if( array[place + 1] == array[place]){	//if n2 = n1, then the places to be checked are increased by 1 but the iteration is not
-		small_straight(array, place + 1, iteration);
+		return 0 + small_straight(array, place + 1, iteration);
 	}
 	else{
 		return 0;	//if the array fails either test, then the array is not a small straight
