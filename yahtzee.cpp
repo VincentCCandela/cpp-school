@@ -2,7 +2,7 @@
 #include<iomanip>
 using namespace std;
 
-//This is a simpler/lower version of yahtzee but the player can still play an infinite number of times 
+//This is a simpler/lower version of yahtzee but the player can still play an infinite number of times. The player's score is recorded and added to the total score after each round.
 
 bool three_of_a_kind(int array[]); //a function to determine if a three of a kind has been rolled
 bool four_of_a_kind(int array[]);	//a function to determine if a four of a kind has been rolled
