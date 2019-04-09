@@ -1,6 +1,5 @@
 #include<iostream>
 #include<iomanip>
-#include <algorithm>
 using namespace std;
 
 //This is a simpler/lower version of yahtzee
