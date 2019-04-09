@@ -2,8 +2,7 @@
 #include<iomanip>
 using namespace std;
 
-//This is a simpler/lower version of yahtzee
-
+//This is a simpler/lower version of yahtzee but the player can still play an infinite number of times 
 
 bool three_of_a_kind(int array[]); //a function to determine if a three of a kind has been rolled
 bool four_of_a_kind(int array[]);	//a function to determine if a four of a kind has been rolled
@@ -14,7 +13,6 @@ bool yahtzee(int array[]);	//a function to determine if a yahtzee has been rolle
 int totaller(int array[]);	//adds up all the numbers in the dice
 
 void inserter(int arrary[]);	//makes the dice go in ascending order
-//void cleaner(int array[]);		//removes double integers in an array
 void swap(int & a, int & b);	//swaps two integers
 
 const int size = 5; //sets the number of the array of the dice to five
@@ -66,14 +64,7 @@ int main(){
 			cout << "You have rolled a three of a kind. +20 points!" << endl;
 			total_points = total_points + 20;
 		}
-		
-		//array<int,5> dice1 = dice;
-		//int dice1[size];
-		
-		//for(int i = 0; i < size; i++){
-		
-		//cleaner(dice1);
-		
+				
 		else if(large_straight(dice, 0, 0) == 1){	//checks if the player has rolled a large straight, if they have, the player is informed of their roll and the points they've earned
 			cout << "You have rolled a large straight. +40 points!" << endl;
 			total_points = total_points + 40;
@@ -155,7 +146,7 @@ int small_straight(int array[], int place, int iteration){	//checks if the playe
 	else if( array[place + 1] == array[place] + 1 ){	//if n2 = n1 + 1, then the function is recursively called
 		small_straight(array, place + 1, iteration + 1);	//when the function is called again with place + 1 and iteration + 1
 	}
-	else if( array[place + 1] == array[place]){
+	else if( array[place + 1] == array[place]){	//if n2 = n1, then the places to be checked are increased by 1 but the iteration is not
 		small_straight(array, place + 1, iteration);
 	}
 	else{
@@ -169,15 +160,6 @@ void inserter (int array[]){	//the insertion sorting algorthm which sorts the in
 		while((j > 0) && (array[j - 1] > array[j])){
 			swap(array[j],array[j - 1]);
 			j = j - 1;
-		}
-	}
-}
-
-void cleaner (int array[]){
-	
-	for( int i = 0; i < size; i++ ){
-		if( array[i + 1] == array[i] ){
-			array[i + 1] = 10;
 		}
 	}
 }
