@@ -18,8 +18,15 @@ int main(){
 
 int exponent(int base, int pow){
 	
-	if (pow == 1)
+	if (pow == 0 && base == 0){
+		cout << "Cookie monster has no cookies and no friends." << endl;
+	}
+	else if (pow == 0 && base != 0){
+		return 1;
+	}
+	else if (pow == 1){
 		return base;
+	}
 	else{
 		return base * exponent(base, pow - 1);	
 	}
