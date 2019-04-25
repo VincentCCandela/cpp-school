@@ -15,18 +15,19 @@ int main(){
         cout << "How dare u!" << endl;
     }
     
-    char symbol;
+    char symbol, new_symbol;
     int amount;
 
     cout << "Enter a symbol you wish to add: ";
     cin >> symbol;
 
     cout << "Enter the amount you wish to add: ";
-    cin >> amound;
+    cin >> amount;
 
     cout << endl;
 
-    cout << symbol << " + " << amount << " = " << symbol + amount << endl;
+    new_symbol = symbol + amount;
+    cout << symbol << " + " << amount << " = " << new_symbol << endl;
 
     return 0;
 }
