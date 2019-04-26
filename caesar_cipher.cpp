@@ -23,6 +23,8 @@ int main(){
 
         cout << "What do you want the shift for your cipher to be?" << endl;
         cin >> cipher;
+        
+        cipher = cipher % 26;
 
         encoded_message = encrypt(0 ,message, cipher, );
 
@@ -39,24 +41,23 @@ int main(){
     return 0;
 }
 
-string encrypt(int i, string message, int change, tempchange){
-    if(i == (message.length() - 1) ){
-        return message;
-    else if( ( message[i] >= 65 && message[i] <= 90) ){
-        int temp_change = change % 26;
-        if ( (message[i] + temp_change ) > 90 ){
-            encrypt(i, message, change, tempchange);
-            return message[i] == 65;
-        }
-
-        message[i] = message[i] + (change % 26)
-
-    }
-    else if( (message[i] + change) >= 122 ){
-
-    }
-    }
-
+string encrypt(int i, string message, int change, int tempchange){
+    for( int i = 0; i <= message.length(); ++i){
     
-    return output;
+    if(i == message.length() ){
+        return message;
+    else if( message[i] >= 65 && message[i] <= 90 ){
+        message[i] = message[i] + change;
+        if ( message[i] > 90 ){
+            message[i] = message[i] - 26;
+        }      
+    }
+    else if( message[i] >= 97 && message[i] <= 122){
+        message[i] = message[i] + change;
+        if( message[i] > 122 ){
+            message[i] = message[i] - 26;
+        }
+    }
+        
+    }
 }
