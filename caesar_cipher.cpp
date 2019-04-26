@@ -47,7 +47,7 @@ string encrypt(int i, string message, int change){
         //temp_change = temp_change % 26;
         if ( (message[i] + temp_change ) > 90 ){
            message[i] == 65;
-           return message
+           encrypt(i, message, change);
         }
 
         message[i] = message[i] + (change % 26)
