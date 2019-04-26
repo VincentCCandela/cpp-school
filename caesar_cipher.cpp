@@ -2,7 +2,7 @@
 #include<iomanip>
 using namespace std;
 
-string encrypt(int i, string message, int change);
+string encrypt(int i, string message, int change, int temp_change);
 string decode();
 
 int main(){
@@ -24,7 +24,7 @@ int main(){
         cout << "What do you want the shift for your cipher to be?" << endl;
         cin >> cipher;
 
-        encoded_message = encrypt(0 ,message, cipher, outpute);
+        encoded_message = encrypt(0 ,message, cipher, );
 
         cout << "Your encoded message is" << endl;
         cout << encoded_message;
@@ -39,15 +39,14 @@ int main(){
     return 0;
 }
 
-string encrypt(int i, string message, int change){
+string encrypt(int i, string message, int change, tempchange){
     if(i == (message.length() - 1) ){
         return message;
     else if( ( message[i] >= 65 && message[i] <= 90) ){
-        int temp_change = change;
-        //temp_change = temp_change % 26;
+        int temp_change = change % 26;
         if ( (message[i] + temp_change ) > 90 ){
-           message[i] == 65;
-           encrypt(i, message, change);
+            encrypt(i, message, change, tempchange);
+            return message[i] == 65;
         }
 
         message[i] = message[i] + (change % 26)
