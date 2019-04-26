@@ -33,15 +33,13 @@ int main(){
         cin >> response;
         
         if (toupper(response) == 'Y'){
-            //decode(the_message);
+            the_message = decode(the_message, cipher);
+            cout << the_message << endl;
         }
         else{
             cout << "It will always be a secret" << endl;
         }
     } 
-
-
-
 
     return 0;
 }
@@ -61,6 +59,26 @@ string encrypt(string message, int change){
             message[i] = message[i] + change;
             if( message[i] > 122 ){
                 message[i] = message[i] - 26;
+            }
+        }     
+    }
+}
+
+string decode(string message, int change){
+    for( int i = 0; i <= message.length(); ++i){
+        if(i == message.length() ){
+            return message;
+        }
+        else if( message[i] >= 65 && message[i] <= 90 ){
+            message[i] = message[i] - change;
+            if ( message[i] < 65 ){
+                message[i] = message[i] + 26;
+            }      
+        }
+        else if( message[i] >= 97 && message[i] <= 122){
+            message[i] = message[i] - change;
+            if( message[i] < 97 ){
+                message[i] = message[i] + 26;
             }
         }     
     }
