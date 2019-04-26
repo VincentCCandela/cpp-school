@@ -2,34 +2,31 @@
 #include<iomanip>
 using namespace std;
 
-string encrypt(int i, string message, int change, int temp_change);
+string encrypt(string message, int change);
 string decode();
 
 int main(){
     char response;
-    int length;
 
     cout << "Do you want to encrypt a message? (y/n): ";
     cin >> response;
     
     while ( toupper(response) == 'Y'){
         
-        string message, encoded_message;
+        string the_message;
 
         cout << "What message do you want to encode?" << endl;
-        cin >> message;
-
-        length = message.length();
+        cin >> the_message;
 
         cout << "What do you want the shift for your cipher to be?" << endl;
         cin >> cipher;
         
         cipher = cipher % 26;
 
-        encoded_message = encrypt(0 ,message, cipher, );
+        the_message = encrypt(the_message, cipher);
 
         cout << "Your encoded message is" << endl;
-        cout << encoded_message;
+        cout << the_message;
 
         cout << "Do you want to decrypt your message? (y/n)"
         cin >> response;
