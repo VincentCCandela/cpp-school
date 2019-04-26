@@ -11,7 +11,7 @@ int main(){
     cout << "Do you want to encrypt a message? (y/n): ";
     cin >> response;
     
-    while ( toupper(response) == 'Y'){
+    while  {
         
         string the_message;
 
@@ -30,7 +30,14 @@ int main(){
 
         cout << "Do you want to decrypt your message? (y/n)"
         cin >> response;
-    }
+        
+        if (toupper(response) == 'Y'){
+            decode(the_message);
+        }
+        else{
+            cout << "It will always be a secret" << endl;
+        }
+    } 
 
 
 
