@@ -2,83 +2,80 @@
 #include<iomanip>
 using namespace std;
 
-string encrypt(string message, int change);
-string decode(string message, int change);
+string encrypt(string message, int change);     //the function prototype for the Caesar Cipher encryption
+string decode(string message, int change);      //the function prototype for the Caesar Cipher decryption
 
 int main(){
-    char response;
-
-    cout << "Do you want to encrypt a message? (y/n): ";
-    cin >> response;
+    char response;  //declares the variable for if the user wants decrypt his encrypted message
     
-    for(; ;)  {
+    for(; ;)  {     //will run the program in perpetuity as shown in the "Example Outputs"
         
-        string the_message;
-        int cipher;
+        string the_message;     //declares the variable for the message that is encrypted/decrypted by the program
+        int cipher;     //declares the shift amount for the cipher
 
-        cout << "What message do you want to encode?" << endl;
-        cin >> the_message;
+        cout << "What message would you like to encode? " << endl;      //asks the user for a message to encrypt
+        cin >> the_message;     //inputs the message to encrypt
 
-        cout << "What do you want the shift for your cipher to be?" << endl;
-        cin >> cipher;
+        cout << "What do you want the shift for your cipher to be? " << endl;       //asks for the shift for the cipher
+        cin >> cipher;      //inputs the shift for the cipher
         
-        cipher = cipher % 26;
+        cipher = cipher % 26;       //shifts of over 26 are meaningless because there are only 26 letters in the alphabet so cipher % 26 is taken
 
-        the_message = encrypt(the_message, cipher);
+        the_message = encrypt(the_message, cipher);     //does the caesar cipher encryption scheme as determined by the shift number
 
-        cout << "Your encoded message is" << endl;
-        cout << the_message << endl;
+        cout << "Your encoded message is" << endl;      //outputs the encoded message
+        cout << the_message << endl;        
 
-        cout << "Do you want to decrypt your message? (y/n)";
+        cout << "Do you want to decrypt your message? (y/n)";       //asks the user if he wants to decrypt his message
         cin >> response;
         
-        if (toupper(response) == 'Y'){
-            the_message = decode(the_message, cipher);
-            cout << the_message << endl;
+        if (toupper(response) == 'Y'){      //asks the user if he wants to decrypt his message, toupper() is user to convert lowercase y to uppercase Y
+            the_message = decode(the_message, cipher);    //decrypts the message
+            cout << the_message << endl;        //outputs the decrypted message
         }
-        else{
-            cout << "It will always be a secret" << endl;
+        else if (toupper(response) == 'N') {    //if the user doesn't want to decrypt then...
+            cout << "It will always be a secret" << endl;   //...the user is told his message will always be safe
         }
     } 
 
     return 0;
 }
 
-string encrypt(string message, int change){
-    for( int i = 0; i <= message.length(); ++i){
-        if(i == message.length() ){
+string encrypt(string message, int change){     //the function for caesar-cipher encryption using an inputted message to be encrypted and a shift value for the cipher
+    for( int i = 0; i <= message.length(); ++i){    //uses a for loop to iterate over all of the letters in the message
+        if(i == message.length() ){     //if all of the letters have been shifted, then the message is returned
             return message;
         }
-        else if( message[i] >= 65 && message[i] <= 90 ){
-            message[i] = message[i] + change;
-            if ( message[i] > 90 ){
-                message[i] = message[i] - 26;
+        else if( message[i] >= 65 && message[i] <= 90 ){    //if the letter is uppercase (ASCII range 65-90)...
+            message[i] = message[i] + change;   //... shift amount is applied to the letter
+            if ( message[i] > 90 ){     //if the letter has gone out of bounds, then...
+                message[i] = message[i] - 26;   //the letter is put back in bounds
             }      
         }
-        else if( message[i] >= 97 && message[i] <= 122){
-            message[i] = message[i] + change;
-            if( message[i] > 122 ){
-                message[i] = message[i] - 26;
+        else if( message[i] >= 97 && message[i] <= 122){    //if the letter is lowercase (ASCII range 97-122)...
+            message[i] = message[i] + change;   //... shift amount is applied to the letter
+            if( message[i] > 122 ){     //if the letter has gone out of bounds...
+                message[i] = message[i] - 26;   //the letter is put back in bounds
             }
         }     
     }
 }
 
-string decode(string message, int change){
-    for( int i = 0; i <= message.length(); ++i){
-        if(i == message.length() ){
+string decode(string message, int change){  //the decryption function for the caesar-cipher using the returned encrypted message and the used shifted amount
+    for( int i = 0; i <= message.length(); ++i){    //iterates over each letter of the message 
+        if(i == message.length() ){     //if all of the letters have been shifted back, then the decrypted message is returned
             return message;
         }
-        else if( message[i] >= 65 && message[i] <= 90 ){
-            message[i] = message[i] - change;
-            if ( message[i] < 65 ){
-                message[i] = message[i] + 26;
+        else if( message[i] >= 65 && message[i] <= 90 ){    //if the letter is uppercase (ASCII range 65-90)...
+            message[i] = message[i] - change;   //... then the letter is shifted over to the left
+            if ( message[i] < 65 ){     //if the letter has been pushed out of bounds...
+                message[i] = message[i] + 26;   //...then the letter is put back in bounds
             }      
         }
-        else if( message[i] >= 97 && message[i] <= 122){
-            message[i] = message[i] - change;
-            if( message[i] < 97 ){
-                message[i] = message[i] + 26;
+        else if( message[i] >= 97 && message[i] <= 122){    //if the letter is uppercase (ASCII range 97-122)...
+            message[i] = message[i] - change;   //... then the letter is shifted over to the left
+            if( message[i] < 97 ){      //if the letter has been pushed out of bounds...
+                message[i] = message[i] + 26;   //...then the letter is put back in bounds
             }
         }     
     }
