@@ -3,7 +3,7 @@
 using namespace std;
 
 string encrypt(string message, int change);
-string decode();
+string decode(string message, int change);
 
 int main(){
     char response;
