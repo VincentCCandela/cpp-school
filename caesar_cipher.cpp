@@ -2,23 +2,36 @@
 #include<iomanip>
 using namespace std;
 
-string encrypt(string input, int change, string output);
+string encrypt(int i, string message, int change);
 string decode();
 
 int main(){
-    string message, encoded_message;
+    char response;
+    int length;
 
-    cout << "What message do you want to encode?" << endl;
-    cin >> message;
+    cout << "Do you want to encrypt a message? (y/n): ";
+    cin >> response;
+    
+    while ( toupper(response) == 'Y'){
+        
+        string message, encoded_message;
 
-    cout << "What do you want the shift for your cipher to be?" << endl;
-    cin >> cipher;
+        cout << "What message do you want to encode?" << endl;
+        cin >> message;
 
-    encrypt(message, cipher, encoded_message);
+        length = message.length();
 
-    cout << "Your encoded message is" << endl;
-    cout << encoded_message;
+        cout << "What do you want the shift for your cipher to be?" << endl;
+        cin >> cipher;
 
+        encoded_message = encrypt(0 ,message, cipher, outpute);
+
+        cout << "Your encoded message is" << endl;
+        cout << encoded_message;
+
+        cout << "Do you want to decrypt your message? (y/n)"
+        cin >> response;
+    }
 
 
 
@@ -26,8 +39,32 @@ int main(){
     return 0;
 }
 
-string encrypt(string message, string output){
-    for(int i = )
+string encrypt(int i, string message, int change){
+    if(i == (message.length - 1) ){
+        return message;
+    }
+    /*
+    else if(message[i] == 32){
+        encrypt()
+    }
+    */
+    else if( ( message[i] >= 65 && message[i] <= 90) && ((message[i] + change) > 90 ) ){
+        
+        int temp_change = change;
+        temp_change = temp_change % 26;
+
+        if ( (message[i] + temp_change ) > 90 ){
+
+        }
+
+        message[i] = message[i] + (change % 26)
+
+    }
+    else if( (message[i] + change) >= 122 ){
+
+    }
+    }
+
     
     return output;
 }
