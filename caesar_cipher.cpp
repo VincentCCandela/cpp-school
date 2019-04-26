@@ -40,21 +40,14 @@ int main(){
 }
 
 string encrypt(int i, string message, int change){
-    if(i == (message.length - 1) ){
+    if(i == (message.length() - 1) ){
         return message;
-    }
-    /*
-    else if(message[i] == 32){
-        encrypt()
-    }
-    */
-    else if( ( message[i] >= 65 && message[i] <= 90) && ((message[i] + change) > 90 ) ){
-        
+    else if( ( message[i] >= 65 && message[i] <= 90) ){
         int temp_change = change;
-        temp_change = temp_change % 26;
-
+        //temp_change = temp_change % 26;
         if ( (message[i] + temp_change ) > 90 ){
-
+           message[i] == 65;
+           return message
         }
 
         message[i] = message[i] + (change % 26)
