@@ -14,7 +14,7 @@ int main(){
         int cipher;     //declares the shift amount for the cipher
 
         cout << "What message would you like to encode? " << endl;      //asks the user for a message to encrypt
-        cin >> the_message;     //inputs the message to encrypt
+        getline(cin, the_message);     //inputs the message to encrypt, getline() is used to properly handle spaces
 
         cout << "What do you want the shift for your cipher to be? " << endl;       //asks for the shift for the cipher
         cin >> cipher;      //inputs the shift for the cipher
@@ -46,6 +46,9 @@ string encrypt(string message, int change){     //the function for caesar-cipher
         if(i == message.length() ){     //if all of the letters have been shifted, then the message is returned
             return message;
         }
+        else if (message[i] == 32){     //if the letter is a space...
+            message[i] = 32;     //... then the letter is kept as a space
+        }
         else if( message[i] >= 65 && message[i] <= 90 ){    //if the letter is uppercase (ASCII range 65-90)...
             message[i] = message[i] + change;   //... shift amount is applied to the letter
             if ( message[i] > 90 ){     //if the letter has gone out of bounds, then...
@@ -65,6 +68,9 @@ string decode(string message, int change){  //the decryption function for the ca
     for( int i = 0; i <= message.length(); ++i){    //iterates over each letter of the message 
         if(i == message.length() ){     //if all of the letters have been shifted back, then the decrypted message is returned
             return message;
+        }
+        else if (message[i] == 32){     //if the letter is a space...
+            message[i] = 32;    //...then the letter is kept as a space
         }
         else if( message[i] >= 65 && message[i] <= 90 ){    //if the letter is uppercase (ASCII range 65-90)...
             message[i] = message[i] - change;   //... then the letter is shifted over to the left
