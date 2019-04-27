@@ -37,7 +37,6 @@ int main(){
             cout << "It will always be a secret" << endl;   //...the user is told his message will always be safe
         }
     } 
-
     return 0;
 }
 
