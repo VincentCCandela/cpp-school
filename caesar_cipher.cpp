@@ -49,15 +49,15 @@ string encrypt(string message, int change){     //the function for caesar-cipher
             message[i] = 32;     //... then the letter is kept as a space
         }
         else if( message[i] >= 65 && message[i] <= 90 ){    //if the letter is uppercase (ASCII range 65-90)...
-            message[i] = message[i] + change;   //... shift amount is applied to the letter
+            message[i] += change;   //... shift amount is applied to the letter
             if ( message[i] > 90 ){     //if the letter has gone out of bounds, then...
-                message[i] = message[i] - 26;   //the letter is put back in bounds
+                message[i] -= 26;   //the letter is put back in bounds
             }      
         }
         else if( message[i] >= 97 && message[i] <= 122){    //if the letter is lowercase (ASCII range 97-122)...
-            message[i] = message[i] + change;   //... shift amount is applied to the letter
+            message[i] += change;   //... shift amount is applied to the letter
             if( message[i] > 122 ){     //if the letter has gone out of bounds...
-                message[i] = message[i] - 26;   //the letter is put back in bounds
+                message[i] -= 26;   //the letter is put back in bounds
             }
         }     
     }
@@ -72,15 +72,15 @@ string decode(string message, int change){  //the decryption function for the ca
             message[i] = 32;    //...then the letter is kept as a space
         }
         else if( message[i] >= 65 && message[i] <= 90 ){    //if the letter is uppercase (ASCII range 65-90)...
-            message[i] = message[i] - change;   //... then the letter is shifted over to the left
+            message[i] -= change;   //... then the letter is shifted over to the left
             if ( message[i] < 65 ){     //if the letter has been pushed out of bounds...
-                message[i] = message[i] + 26;   //...then the letter is put back in bounds
+                message[i] += 26;   //...then the letter is put back in bounds
             }      
         }
         else if( message[i] >= 97 && message[i] <= 122){    //if the letter is uppercase (ASCII range 97-122)...
-            message[i] = message[i] - change;   //... then the letter is shifted over to the left
+            message[i] -= change;   //... then the letter is shifted over to the left
             if( message[i] < 97 ){      //if the letter has been pushed out of bounds...
-                message[i] = message[i] + 26;   //...then the letter is put back in bounds
+                message[i] += 26;   //...then the letter is put back in bounds
             }
         }     
     }
