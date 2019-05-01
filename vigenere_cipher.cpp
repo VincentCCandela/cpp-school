@@ -7,6 +7,9 @@ string decrypt(string message, string key_code, string);
 string key_coder(string message);
 void swap(int & a, int & b);
 
+//watchcartonsonline.com , watchcartons.com
+//
+
 int main(){
     string text, keyphrase;
 
@@ -28,7 +31,7 @@ int main(){
 
 
 string encrypt(string message, string key_code){
-	
+	string full_key = key_coder(key_code, message);
     
 
 
@@ -47,16 +50,29 @@ string decrypt(string message, string key_code){
 
 }
 
-string key_coder(string message){
-    for(int i = 0; i < size; i++){
+string key_coder(string passcode, string original_message){
+    for(int i = 0; i < original_message.length() ; ++i){
+        int j = i;
+        if(original_message[i] == 0){
+
+        }
+        else{
+
+        }
+    }
+
+    /*
+    for(int i = 0; i < message.length(); ++i){
 		int j = i;
-		while((j > 0) && (array[j - 1] > array[j])){
-			swap(array[j],array[j - 1]);
-			j = j - 1;
+		while(message[j] == 32 && ( array[j + 1] != 0 || array[j + 2] != 0)  ){
+			swap(message[j], message[j + 1]);
+			j = j + 1;
 		}
 	}
-
-
+    */
+    for(int i = 0; i < the_length; ++i){
+        
+    }
 
 }
 
