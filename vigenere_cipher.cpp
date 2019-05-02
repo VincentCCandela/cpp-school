@@ -52,16 +52,16 @@ string key_coder(string passcode, string original_message){
     string the_full_key;
     for(int i = 0; i < original_message.length(); ++i){
         if(original_message[i] == 32){
-            the_full_key = 32;
+            the_full_key[i] = 32;
         }
         else if( ( (original_message[i] >= 65 && original_message[i] <= 90 ) || ( original_message[i] >= 97 && original_message[i] <= 122) )&& ( j <= total_places) ) {
             the_full_key[i] = passcode[j];
-            j += 1;
+            ++j;
         }
         else if( ( (original_message[i] >= 65 && original_message[i] <= 90 ) || ( original_message[i] >= 97 && original_message[i] <= 122) ) && ( j > total_places) ) {
             j = j % total_places;
             the_full_key[i] = passcode[j];
-            j += 1;
+            ++j;
         }
         else {
 
