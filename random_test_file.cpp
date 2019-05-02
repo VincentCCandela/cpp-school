@@ -1,20 +1,17 @@
 #include<iostream>
-#include<iomanip>
-using namespace std;
-
-int main(){
-    string change = "lowercase aNd ;/,./ UPPERCASE";
-    transform(change.begin(), change.end(), change.begin(), ::toupper);
-    cout << change << endl;
-
-    /*
-    for( int i = 0; i < change.length(); ++i ){
-        change[i] = change[i] - 64;
-    } 
-    */
-    
-    //cout << change << endl;
 
 
-    return 0;
+//#include <stdio.h>
+//#include <ctype.h>
+ 
+int main(void)
+{
+   int ch;
+ 
+   for (ch = 0; ch <= 0x7f; ch++)
+   {
+      printf("toupper=%#04x\n", toupper(ch));
+      printf("tolower=%#04x\n", tolower(ch));
+      putchar('\n');
+      }
 }

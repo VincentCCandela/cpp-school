@@ -8,22 +8,26 @@ string decode(string message, string change);      //the function prototype for 
 
 int main(){
     char response;  //declares the variable for if the user wants decrypt his encrypted message
+    string the_message;     //declares the variable for the message that is encrypted/decrypted by the program
+    string cipher;     //declares the passcode for the cipher
     
-    for(; ;)  {     //will run the program in perpetuity as shown in the "Example Outputs"
-        
-        string the_message;     //declares the variable for the message that is encrypted/decrypted by the program
-        string cipher;     //declares the passcode for the cipher
-
-        cin.ignore();       //clear the newline buffer in order to use getline()
-
+    while(true)  {     //will run the program in perpetuity as shown in the "Example Outputs"
         cout << "What message would you like to encode? " << endl;      //asks the user for a message to encrypt
         getline(cin, the_message);     //inputs the message to encrypt, getline() is used to properly handle spaces
 
         cout << "What do you want the passcode for your cipher to be? (only a continuous string of uppercase or lowercase alphabetic characters)" << endl;       //asks for the passcode for the cipher
         cin >> cipher;      //inputs the  for the cipher
         
-        transform(the_message.begin(), the_message.end(), the_message.begin(), ::toupper);      //converts both the message and the passcode to uppercase because the vigenere cipher only works in uppercase
-        transform(cipher.begin(), cipher.end(), cipher.begin(), ::toupper);
+        for(int i = 0; i < the_message.length(); ++i){      //convert the message to uppercase letters
+            the_message[i] = toupper(the_message[i]);
+        }
+
+        for(int i = 0; i < cipher.length(); ++i){   //convert the cipher to uppercase letters
+            cipher[i] = toupper(cipher[i]);
+        }
+        
+        //transform(the_message.begin(), the_message.end(), the_message.begin(), ::toupper);      //converts both the message and the passcode to uppercase because the vigenere cipher only works in uppercase
+        //transform(cipher.begin(), cipher.end(), cipher.begin(), ::toupper);
 
         the_message = encrypt(the_message, cipher);     //does the caesar cipher encryption scheme as determined by the passcode
 
@@ -40,6 +44,8 @@ int main(){
         else if (toupper(response) == 'N') {    //if the user doesn't want to decrypt then...
             cout << "It will always be a secret" << endl;   //...the user is told his message will always be safe
         }
+
+        cin.ignore();       //remove \n from iostream in order to use getline()
     } 
     return 0;
 }
@@ -75,14 +81,14 @@ string encrypt(string message, string change){     //the function for caesar-cip
             }
             ++place;      //place is increased by one because the letter has been encrypted
         }
-        else{
+        else{   //if it's any other character, then nothing is done
             
         }
     }
     return message;     //returns the encrypted message
 }
 
-string decode(string message, string change){     //the function for caesar-cipher encryption using an inputted message to be encrypted and a passcode for the cipher
+string decode(string message, string change){     //the function for caesar-cipher decryption using an inputted message to be decrypted and a passcode for the cipher
     int place = 0;      //a counter for the place of the passcode
     
     for( int i = 0; i < change.length(); ++i ){     //converts the alphabetic shifts into numberic shifts
@@ -101,7 +107,7 @@ string decode(string message, string change){     //the function for caesar-ciph
         if (message[i] == 32){     //if the letter is a space...
             message[i] = 32;     //... then the letter is kept as a space
         }
-        else if( message[i] >= 65 && message[i] <= 90 ){    //if the character is a letter, then it is encrypted
+        else if( message[i] >= 65 && message[i] <= 90 ){    //if the character is a letter, then it is decrypted
             if(place > change.length() - 1){        //if the place has gone out of bounds, it is put back in bounds
                 place -= change.length();
             }
@@ -111,11 +117,11 @@ string decode(string message, string change){     //the function for caesar-ciph
             if ( message[i] < 65 ){     //if the letter has gone out of bounds, then...
                 message[i] += 26;   //the letter is put back in bounds
             }
-            ++place;      //place is increased by one because the letter has been encrypted
+            ++place;      //place is increased by one because the letter has been altered
         }
         else{
             
         }
     }
-    return message;     //returns the encrypted message
+    return message;     //returns the decrypted message
 }
