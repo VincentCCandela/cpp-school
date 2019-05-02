@@ -1,5 +1,6 @@
 #include<iostream>
 #include<iomanip>
+#include<algorithm>
 using namespace std;
 
 string encrypt(string message, string change);     //the function prototype for the Caesar Cipher encryption
@@ -11,94 +12,110 @@ int main(){
     for(; ;)  {     //will run the program in perpetuity as shown in the "Example Outputs"
         
         string the_message;     //declares the variable for the message that is encrypted/decrypted by the program
-        string cipher;     //declares the shift amount for the cipher
+        string cipher;     //declares the passcode for the cipher
+
+        cin.ignore();       //clear the newline buffer in order to use getline()
 
         cout << "What message would you like to encode? " << endl;      //asks the user for a message to encrypt
         getline(cin, the_message);     //inputs the message to encrypt, getline() is used to properly handle spaces
 
-        cout << "What do you want the passcode for your cipher to be? (only uppercase or lowercase alphabetic characters)" << endl;       //asks for the shift for the cipher
-        cin >> cipher;      //inputs the shift for the cipher
+        cout << "What do you want the passcode for your cipher to be? (only a continuous string of uppercase or lowercase alphabetic characters)" << endl;       //asks for the passcode for the cipher
+        cin >> cipher;      //inputs the  for the cipher
         
-        //cipher = cipher % 26;       //shifts of over 26 are meaningless because there are only 26 letters in the alphabet so cipher % 26 is taken
+        transform(the_message.begin(), the_message.end(), the_message.begin(), ::toupper);      //converts both the message and the passcode to uppercase because the vigenere cipher only works in uppercase
+        transform(cipher.begin(), cipher.end(), cipher.begin(), ::toupper);
 
-        the_message = encrypt(the_message, cipher);     //does the caesar cipher encryption scheme as determined by the shift number
+        the_message = encrypt(the_message, cipher);     //does the caesar cipher encryption scheme as determined by the passcode
 
         cout << "Your encoded message is" << endl;      //outputs the encoded message
         cout << the_message << endl;        
 
         cout << "Do you want to decrypt your message? (y/n)";       //asks the user if he wants to decrypt his message
         cin >> response;
-        /*
+        
         if (toupper(response) == 'Y'){      //asks the user if he wants to decrypt his message, toupper() is user to convert lowercase y to uppercase Y
             the_message = decode(the_message, cipher);    //decrypts the message
             cout << the_message << endl;        //outputs the decrypted message
         }
         else if (toupper(response) == 'N') {    //if the user doesn't want to decrypt then...
             cout << "It will always be a secret" << endl;   //...the user is told his message will always be safe
-        }*/
+        }
     } 
     return 0;
 }
 
-string encrypt(string message, string change){     //the function for caesar-cipher encryption using an inputted message to be encrypted and a shift value for the cipher
-    int j = 0;
-
-    char the_change[] = change;
+string encrypt(string message, string change){     //the function for caesar-cipher encryption using an inputted message to be encrypted and a passcode for the cipher
+    int place = 0;      //a counter for the place of the passcode
     
-    for( int i = 0; i < change.length(); ++i ){
-        toupper(the_change[i]);        
-        the_change[i] -= 64;
+    for( int i = 0; i < change.length(); ++i ){     //converts the alphabetic shifts into numberic shifts
+        if(change[i] == 32){        //if the character is a space, then nothing is done
+            change[i] = 32;
+        }
+        else if( change[i] >= 65 && change[i] <= 90 ){      //if the character is a letter, then it is converted
+            change[i] -= 64;
+        }
+        else{
+            change[i] = change[i];  //if it's a special character, then nothing is done
+        }
     } 
 
     for( int i = 0; i < message.length(); ++i){    //uses a for loop to iterate over all of the letters in the message      
-        /*
-        if(i == message.length() ){     //if all of the letters have been shifted, then the message is returned
-            return message;
-        }
-        */
         if (message[i] == 32){     //if the letter is a space...
             message[i] = 32;     //... then the letter is kept as a space
         }
-        else if( message[i] >= 65 && message[i] <= 90 ){    //if the letter is uppercase (ASCII range 65-90)...
-            if(j > change.length() - 1){
-                j -= change.length();
+        else if( message[i] >= 65 && message[i] <= 90 ){    //if the character is a letter, then it is encrypted
+            if(place > change.length() - 1){        //if the place has gone out of bounds, it is put back in bounds
+                place -= change.length();
             }
 
-               //... shift amount is applied to the letter
-            message[i] += the_change[j];
+            message[i] += change[place];        //shift is applied to the letter
 
             if ( message[i] > 90 ){     //if the letter has gone out of bounds, then...
                 message[i] -= 26;   //the letter is put back in bounds
             }
-            ++j;      
+            ++place;      //place is increased by one because the letter has been encrypted
         }
         else{
             
         }
     }
-    return message;
+    return message;     //returns the encrypted message
 }
-/*
-string decode(string message, string change){  //the decryption function for the caesar-cipher using the returned encrypted message and the used shifted amount
-    for( int i = 0; i <= message.length(); ++i){    //iterates over each letter of the message 
-        if(i == message.length() ){     //if all of the letters have been shifted back, then the decrypted message is returned
-            return message;
+
+string decode(string message, string change){     //the function for caesar-cipher encryption using an inputted message to be encrypted and a passcode for the cipher
+    int place = 0;      //a counter for the place of the passcode
+    
+    for( int i = 0; i < change.length(); ++i ){     //converts the alphabetic shifts into numberic shifts
+        if(change[i] == 32){        //if the character is a space, then nothing is done
+            change[i] = 32;
         }
-        else if (message[i] == 32){     //if the letter is a space...
-            message[i] = 32;    //...then the letter is kept as a space
+        else if( change[i] >= 65 && change[i] <= 90 ){      //if the character is a letter, then it is converted
+            change[i] -= 64;
         }
-        else if( message[i] >= 65 && message[i] <= 90 ){    //if the letter is uppercase (ASCII range 65-90)...
-            message[i] -= change;   //... then the letter is shifted over to the left
-            if ( message[i] < 65 ){     //if the letter has been pushed out of bounds...
-                message[i] += 26;   //...then the letter is put back in bounds
-            }      
+        else{
+            change[i] = change[i];  //if it's a special character, then nothing is done
         }
-        else if( message[i] >= 97 && message[i] <= 122){    //if the letter is uppercase (ASCII range 97-122)...
-            message[i] -= change;   //... then the letter is shifted over to the left
-            if( message[i] < 97 ){      //if the letter has been pushed out of bounds...
-                message[i] += 26;   //...then the letter is put back in bounds
+    } 
+
+    for( int i = 0; i < message.length(); ++i){    //uses a for loop to iterate over all of the letters in the message      
+        if (message[i] == 32){     //if the letter is a space...
+            message[i] = 32;     //... then the letter is kept as a space
+        }
+        else if( message[i] >= 65 && message[i] <= 90 ){    //if the character is a letter, then it is encrypted
+            if(place > change.length() - 1){        //if the place has gone out of bounds, it is put back in bounds
+                place -= change.length();
             }
-        }     
+
+            message[i] -= change[place];        //shift is applied to the letter
+
+            if ( message[i] < 65 ){     //if the letter has gone out of bounds, then...
+                message[i] += 26;   //the letter is put back in bounds
+            }
+            ++place;      //place is increased by one because the letter has been encrypted
+        }
+        else{
+            
+        }
     }
+    return message;     //returns the encrypted message
 }
-*/

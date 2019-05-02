@@ -3,15 +3,18 @@
 using namespace std;
 
 int main(){
-    string one,two,output;
+    string change = "lowercase aNd ;/,./ UPPERCASE";
+    transform(change.begin(), change.end(), change.begin(), ::toupper);
+    cout << change << endl;
 
-    cin >> one;
-    cin >> two;
-    cin >> output;
+    /*
+    for( int i = 0; i < change.length(); ++i ){
+        change[i] = change[i] - 64;
+    } 
+    */
+    
+    //cout << change << endl;
 
-    output[1] = output[1] + 5;
-
-    cout << output << "done " << endl;
 
     return 0;
 }
