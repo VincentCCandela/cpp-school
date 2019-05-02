@@ -42,9 +42,14 @@ int main(){
 
 string encrypt(string message, string change){     //the function for caesar-cipher encryption using an inputted message to be encrypted and a shift value for the cipher
     int j = 0;
-    for( int i = 0; i <= message.length(); ++i){    //uses a for loop to iterate over all of the letters in the message
-        toupper(message[i]);
-        toupper(change[i]);
+
+    for( int i = 0; i < change.length(); ++i ){
+        toupper(change[i]);        
+        change[i] -= 64;
+    } 
+
+    for( int i = 0; i < message.length(); ++i){    //uses a for loop to iterate over all of the letters in the message
+        toupper(message[i]);        
         /*
         if(i == message.length() ){     //if all of the letters have been shifted, then the message is returned
             return message;
@@ -54,17 +59,20 @@ string encrypt(string message, string change){     //the function for caesar-cip
             message[i] = 32;     //... then the letter is kept as a space
         }
         else if( message[i] >= 65 && message[i] <= 90 ){    //if the letter is uppercase (ASCII range 65-90)...
-            if(j > change.length()){
+            if(j > change.length() - 1){
                 j -= change.length();
             }
-            message[i] += change[i];   //... shift amount is applied to the letter
+
+               //... shift amount is applied to the letter
+            message[i] += change[j];
+
             if ( message[i] > 90 ){     //if the letter has gone out of bounds, then...
                 message[i] -= 26;   //the letter is put back in bounds
             }
             ++j;      
         }
         else{
-            message[i] = message[i];
+            
         }
     }
     return message;
