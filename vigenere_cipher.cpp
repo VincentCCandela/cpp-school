@@ -43,13 +43,14 @@ int main(){
 string encrypt(string message, string change){     //the function for caesar-cipher encryption using an inputted message to be encrypted and a shift value for the cipher
     int j = 0;
 
+    char the_change[] = change;
+    
     for( int i = 0; i < change.length(); ++i ){
-        toupper(change[i]);        
-        change[i] -= 64;
+        toupper(the_change[i]);        
+        the_change[i] -= 64;
     } 
 
-    for( int i = 0; i < message.length(); ++i){    //uses a for loop to iterate over all of the letters in the message
-        toupper(message[i]);        
+    for( int i = 0; i < message.length(); ++i){    //uses a for loop to iterate over all of the letters in the message      
         /*
         if(i == message.length() ){     //if all of the letters have been shifted, then the message is returned
             return message;
