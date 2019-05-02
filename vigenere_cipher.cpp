@@ -1,79 +1,95 @@
 #include<iostream>
 #include<iomanip>
-#include<string>
 using namespace std;
 
-string encrypt(string message, string key_code);
-string decrypt(string message, string key_code);
-string key_coder(string passcode, string original_message);
-void swap(int & a, int & b);
-
-//watchcartonsonline.com , watchcartons.com
-//
+string encrypt(string message, string change);     //the function prototype for the Caesar Cipher encryption
+string decode(string message, string change);      //the function prototype for the Caesar Cipher decryption
 
 int main(){
-    string text, keyphrase;
+    char response;  //declares the variable for if the user wants decrypt his encrypted message
+    
+    for(; ;)  {     //will run the program in perpetuity as shown in the "Example Outputs"
+        
+        string the_message;     //declares the variable for the message that is encrypted/decrypted by the program
+        string cipher;     //declares the shift amount for the cipher
 
-    cout << "Input a message to encrypt: ";
-    getline(cin, text);
+        cout << "What message would you like to encode? " << endl;      //asks the user for a message to encrypt
+        getline(cin, the_message);     //inputs the message to encrypt, getline() is used to properly handle spaces
 
-    cout << "Enter a key phrase: ";
-    getline(cin, keyphrase);
+        cout << "What do you want the passcode for your cipher to be? (only uppercase or lowercase alphabetic characters)" << endl;       //asks for the shift for the cipher
+        cin >> cipher;      //inputs the shift for the cipher
+        
+        //cipher = cipher % 26;       //shifts of over 26 are meaningless because there are only 26 letters in the alphabet so cipher % 26 is taken
 
-    encrypt(text, keyphrase);
+        the_message = encrypt(the_message, cipher);     //does the caesar cipher encryption scheme as determined by the shift number
 
+        cout << "Your encoded message is" << endl;      //outputs the encoded message
+        cout << the_message << endl;        
 
+        cout << "Do you want to decrypt your message? (y/n)";       //asks the user if he wants to decrypt his message
+        cin >> response;
+        /*
+        if (toupper(response) == 'Y'){      //asks the user if he wants to decrypt his message, toupper() is user to convert lowercase y to uppercase Y
+            the_message = decode(the_message, cipher);    //decrypts the message
+            cout << the_message << endl;        //outputs the decrypted message
+        }
+        else if (toupper(response) == 'N') {    //if the user doesn't want to decrypt then...
+            cout << "It will always be a secret" << endl;   //...the user is told his message will always be safe
+        }*/
+    } 
     return 0;
 }
 
-
-string encrypt(string message, string key_code){
-	string full_key = key_coder(key_code, message);
-    
-
-
-    for(int i = 0; i <= message.length(); ++i){
-        if(i == message.length() ){     //if all of the letters have been adjusted, then the message is returned
+string encrypt(string message, string change){     //the function for caesar-cipher encryption using an inputted message to be encrypted and a shift value for the cipher
+    int j = 0;
+    for( int i = 0; i <= message.length(); ++i){    //uses a for loop to iterate over all of the letters in the message
+        toupper(message[i]);
+        toupper(change[i]);
+        /*
+        if(i == message.length() ){     //if all of the letters have been shifted, then the message is returned
+            return message;
+        }
+        */
+        if (message[i] == 32){     //if the letter is a space...
+            message[i] = 32;     //... then the letter is kept as a space
+        }
+        else if( message[i] >= 65 && message[i] <= 90 ){    //if the letter is uppercase (ASCII range 65-90)...
+            if(j > change.length()){
+                j -= change.length();
+            }
+            message[i] += change[i];   //... shift amount is applied to the letter
+            if ( message[i] > 90 ){     //if the letter has gone out of bounds, then...
+                message[i] -= 26;   //the letter is put back in bounds
+            }
+            ++j;      
+        }
+        else{
+            message[i] = message[i];
+        }
+    }
+    return message;
+}
+/*
+string decode(string message, string change){  //the decryption function for the caesar-cipher using the returned encrypted message and the used shifted amount
+    for( int i = 0; i <= message.length(); ++i){    //iterates over each letter of the message 
+        if(i == message.length() ){     //if all of the letters have been shifted back, then the decrypted message is returned
             return message;
         }
         else if (message[i] == 32){     //if the letter is a space...
-            message[i] = 32;     //... then the letter is kept as a space
+            message[i] = 32;    //...then the letter is kept as a space
         }
-
+        else if( message[i] >= 65 && message[i] <= 90 ){    //if the letter is uppercase (ASCII range 65-90)...
+            message[i] -= change;   //... then the letter is shifted over to the left
+            if ( message[i] < 65 ){     //if the letter has been pushed out of bounds...
+                message[i] += 26;   //...then the letter is put back in bounds
+            }      
+        }
+        else if( message[i] >= 97 && message[i] <= 122){    //if the letter is uppercase (ASCII range 97-122)...
+            message[i] -= change;   //... then the letter is shifted over to the left
+            if( message[i] < 97 ){      //if the letter has been pushed out of bounds...
+                message[i] += 26;   //...then the letter is put back in bounds
+            }
+        }     
     }
 }
-
-string decrypt(string message, string key_code){
-
-}
-
-string key_coder(string passcode, string original_message){
-    int j = 0, total_places = passcode.length() - 1;
-    string the_full_key;
-    for(int i = 0; i < original_message.length(); ++i){
-        if(original_message[i] == 32){
-            the_full_key[i] = 32;
-        }
-        else if( ( (original_message[i] >= 65 && original_message[i] <= 90 ) || ( original_message[i] >= 97 && original_message[i] <= 122) )&& ( j <= total_places) ) {
-            the_full_key[i] = passcode[j];
-            ++j;
-        }
-        else if( ( (original_message[i] >= 65 && original_message[i] <= 90 ) || ( original_message[i] >= 97 && original_message[i] <= 122) ) && ( j > total_places) ) {
-            j = j % total_places;
-            the_full_key[i] = passcode[j];
-            ++j;
-        }
-        else {
-
-        }
-    }
-
-    cout << the_full_key << endl;
-
-}
-
-void swap(int & a, int & b){
-	int tempvar = a;
-	a = b;
-	b = tempvar;
-}
+*/
