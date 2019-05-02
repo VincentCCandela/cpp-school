@@ -65,7 +65,7 @@ string encrypt(string message, string change){     //the function for caesar-cip
             }
 
                //... shift amount is applied to the letter
-            message[i] += change[j];
+            message[i] += the_change[j];
 
             if ( message[i] > 90 ){     //if the letter has gone out of bounds, then...
                 message[i] -= 26;   //the letter is put back in bounds
