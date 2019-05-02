@@ -1,10 +1,11 @@
 #include<iostream>
 #include<iomanip>
+#include<string>
 using namespace std;
 
-string encrypt(string message, string key_code, string);
-string decrypt(string message, string key_code, string);
-string key_coder(string message);
+string encrypt(string message, string key_code);
+string decrypt(string message, string key_code);
+string key_coder(string passcode, string original_message);
 void swap(int & a, int & b);
 
 //watchcartonsonline.com , watchcartons.com
@@ -19,11 +20,7 @@ int main(){
     cout << "Enter a key phrase: ";
     getline(cin, keyphrase);
 
-    encrypt(text, keyphrase)
-
-
-
-
+    encrypt(text, keyphrase);
 
 
     return 0;
@@ -51,28 +48,27 @@ string decrypt(string message, string key_code){
 }
 
 string key_coder(string passcode, string original_message){
-    for(int i = 0; i < original_message.length() ; ++i){
-        int j = i;
-        if(original_message[i] == 0){
-
+    int j = 0, total_places = passcode.length() - 1;
+    string the_full_key;
+    for(int i = 0; i < original_message.length(); ++i){
+        if(original_message[i] == 32){
+            the_full_key = 32;
         }
-        else{
+        else if( ( (original_message[i] >= 65 && original_message[i] <= 90 ) || ( original_message[i] >= 97 && original_message[i] <= 122) )&& ( j <= total_places) ) {
+            the_full_key[i] = passcode[j];
+            j += 1;
+        }
+        else if( ( (original_message[i] >= 65 && original_message[i] <= 90 ) || ( original_message[i] >= 97 && original_message[i] <= 122) ) && ( j > total_places) ) {
+            j = j % total_places;
+            the_full_key[i] = passcode[j];
+            j += 1;
+        }
+        else {
 
         }
     }
 
-    /*
-    for(int i = 0; i < message.length(); ++i){
-		int j = i;
-		while(message[j] == 32 && ( array[j + 1] != 0 || array[j + 2] != 0)  ){
-			swap(message[j], message[j + 1]);
-			j = j + 1;
-		}
-	}
-    */
-    for(int i = 0; i < the_length; ++i){
-        
-    }
+    cout << the_full_key << endl;
 
 }
 
