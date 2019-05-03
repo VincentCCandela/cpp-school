@@ -50,22 +50,13 @@ string encrypt(string message, string change){     //the function for caesar-cip
     int place = 0;      //a counter for the place of the passcode
     
     for( int i = 0; i < change.length(); ++i ){     //converts the alphabetic shifts into numberic shifts
-        if(change[i] == 32){        //if the character is a space, then nothing is done
-            change[i] = 32;
-        }
-        else if( change[i] >= 65 && change[i] <= 90 ){      //if the character is a letter, then it is converted
+        if( change[i] >= 65 && change[i] <= 90 ){      //if the character is a letter, then it is converted
             change[i] -= 64;
-        }
-        else{
-            change[i] = change[i];  //if it's a special character, then nothing is done
         }
     } 
 
     for( int i = 0; i < message.length(); ++i){    //uses a for loop to iterate over all of the letters in the message      
-        if (message[i] == 32){     //if the letter is a space...
-            message[i] = 32;     //... then the letter is kept as a space
-        }
-        else if( message[i] >= 65 && message[i] <= 90 ){    //if the character is a letter, then it is encrypted
+        if( message[i] >= 65 && message[i] <= 90 ){    //if the character is a letter, then it is encrypted
             if(place > change.length() - 1){        //if the place has gone out of bounds, it is put back in bounds
                 place -= change.length();
             }
@@ -86,19 +77,13 @@ string decode(string message, string change){     //the function for caesar-ciph
     int place = 0;      //a counter for the place of the passcode
     
     for( int i = 0; i < change.length(); ++i ){     //converts the alphabetic shifts into numberic shifts
-        if(change[i] == 32){        //if the character is a space, then nothing is done
-            change[i] = 32;
-        }
-        else if( change[i] >= 65 && change[i] <= 90 ){      //if the character is a letter, then it is converted
+        if( change[i] >= 65 && change[i] <= 90 ){      //if the character is a letter, then it is converted
             change[i] -= 64;
         }
     } 
 
     for( int i = 0; i < message.length(); ++i){    //uses a for loop to iterate over all of the letters in the message      
-        if (message[i] == 32){     //if the letter is a space...
-            message[i] = 32;     //... then the letter is kept as a space
-        }
-        else if( message[i] >= 65 && message[i] <= 90 ){    //if the character is a letter, then it is decrypted
+        if( message[i] >= 65 && message[i] <= 90 ){    //if the character is a letter, then it is decrypted
             if(place > change.length() - 1){        //if the place has gone out of bounds, it is put back in bounds
                 place -= change.length();
             }

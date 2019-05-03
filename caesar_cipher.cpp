@@ -7,12 +7,10 @@ string decode(string message, int change);      //the function prototype for the
 
 int main(){
     char response;  //declares the variable for if the user wants decrypt his encrypted message
-    
-    for(; ;)  {     //will run the program in perpetuity as shown in the "Example Outputs"
-        
-        string the_message;     //declares the variable for the message that is encrypted/decrypted by the program
-        int cipher;     //declares the shift amount for the cipher
+    string the_message;     //declares the variable for the message that is encrypted/decrypted by the program
+    int cipher;     //declares the shift amount for the cipher
 
+    while(true)  {     //will run the program in perpetuity as shown in the "Example Outputs"
         cout << "What message would you like to encode? " << endl;      //asks the user for a message to encrypt
         getline(cin, the_message);     //inputs the message to encrypt, getline() is used to properly handle spaces
 
@@ -36,19 +34,14 @@ int main(){
         else if (toupper(response) == 'N') {    //if the user doesn't want to decrypt then...
             cout << "It will always be a secret" << endl;   //...the user is told his message will always be safe
         }
+        cin.ignore();
     } 
     return 0;
 }
 
 string encrypt(string message, int change){     //the function for caesar-cipher encryption using an inputted message to be encrypted and a shift value for the cipher
-    for( int i = 0; i <= message.length(); ++i){    //uses a for loop to iterate over all of the letters in the message
-        if(i == message.length() ){     //if all of the letters have been shifted, then the message is returned
-            return message;
-        }
-        else if (message[i] == 32){     //if the letter is a space...
-            message[i] = 32;     //... then the letter is kept as a space
-        }
-        else if( message[i] >= 65 && message[i] <= 90 ){    //if the letter is uppercase (ASCII range 65-90)...
+    for( int i = 0; i < message.length(); ++i){    //uses a for loop to iterate over all of the letters in the message
+        if( message[i] >= 65 && message[i] <= 90 ){    //if the letter is uppercase (ASCII range 65-90)...
             message[i] += change;   //... shift amount is applied to the letter
             if ( message[i] > 90 ){     //if the letter has gone out of bounds, then...
                 message[i] -= 26;   //the letter is put back in bounds
@@ -59,19 +52,14 @@ string encrypt(string message, int change){     //the function for caesar-cipher
             if( message[i] > 122 ){     //if the letter has gone out of bounds...
                 message[i] -= 26;   //the letter is put back in bounds
             }
-        }     
+        } 
     }
+    return message;    //if all of the letters have been shifted, then the message is returned
 }
 
 string decode(string message, int change){  //the decryption function for the caesar-cipher using the returned encrypted message and the used shifted amount
     for( int i = 0; i <= message.length(); ++i){    //iterates over each letter of the message 
-        if(i == message.length() ){     //if all of the letters have been shifted back, then the decrypted message is returned
-            return message;
-        }
-        else if (message[i] == 32){     //if the letter is a space...
-            message[i] = 32;    //...then the letter is kept as a space
-        }
-        else if( message[i] >= 65 && message[i] <= 90 ){    //if the letter is uppercase (ASCII range 65-90)...
+        if( message[i] >= 65 && message[i] <= 90 ){    //if the letter is uppercase (ASCII range 65-90)...
             message[i] -= change;   //... then the letter is shifted over to the left
             if ( message[i] < 65 ){     //if the letter has been pushed out of bounds...
                 message[i] += 26;   //...then the letter is put back in bounds
@@ -82,6 +70,7 @@ string decode(string message, int change){  //the decryption function for the ca
             if( message[i] < 97 ){      //if the letter has been pushed out of bounds...
                 message[i] += 26;   //...then the letter is put back in bounds
             }
-        }     
+        }
     }
+    return message;     //if all of the letters have been shifted back, then the decrypted message is returned
 }
