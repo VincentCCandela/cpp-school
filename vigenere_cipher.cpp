@@ -1,6 +1,5 @@
 #include<iostream>
 #include<iomanip>
-#include<algorithm>
 using namespace std;
 
 string encrypt(string message, string change);     //the function prototype for the Caesar Cipher encryption
@@ -15,7 +14,7 @@ int main(){
         cout << "What message would you like to encode? " << endl;      //asks the user for a message to encrypt
         getline(cin, the_message);     //inputs the message to encrypt, getline() is used to properly handle spaces
 
-        cout << "What do you want the passcode for your cipher to be? (only a continuous string of uppercase or lowercase alphabetic characters)" << endl;       //asks for the passcode for the cipher
+        cout << "What do you want the passcode for your cipher to be? (only a continuous string of uppercase or lowercase alphabetic characters) " << endl;       //asks for the passcode for the cipher
         cin >> cipher;      //inputs the  for the cipher
         
         for(int i = 0; i < the_message.length(); ++i){      //convert the message to uppercase letters
@@ -26,15 +25,12 @@ int main(){
             cipher[i] = toupper(cipher[i]);
         }
         
-        //transform(the_message.begin(), the_message.end(), the_message.begin(), ::toupper);      //converts both the message and the passcode to uppercase because the vigenere cipher only works in uppercase
-        //transform(cipher.begin(), cipher.end(), cipher.begin(), ::toupper);
-
         the_message = encrypt(the_message, cipher);     //does the caesar cipher encryption scheme as determined by the passcode
 
         cout << "Your encoded message is" << endl;      //outputs the encoded message
         cout << the_message << endl;        
 
-        cout << "Do you want to decrypt your message? (y/n)";       //asks the user if he wants to decrypt his message
+        cout << "Do you want to decrypt your message? (y/n) ";       //asks the user if he wants to decrypt his message
         cin >> response;
         
         if (toupper(response) == 'Y'){      //asks the user if he wants to decrypt his message, toupper() is user to convert lowercase y to uppercase Y
@@ -79,10 +75,8 @@ string encrypt(string message, string change){     //the function for caesar-cip
             if ( message[i] > 90 ){     //if the letter has gone out of bounds, then...
                 message[i] -= 26;   //the letter is put back in bounds
             }
+
             ++place;      //place is increased by one because the letter has been encrypted
-        }
-        else{   //if it's any other character, then nothing is done
-            
         }
     }
     return message;     //returns the encrypted message
@@ -97,9 +91,6 @@ string decode(string message, string change){     //the function for caesar-ciph
         }
         else if( change[i] >= 65 && change[i] <= 90 ){      //if the character is a letter, then it is converted
             change[i] -= 64;
-        }
-        else{
-            change[i] = change[i];  //if it's a special character, then nothing is done
         }
     } 
 
@@ -117,10 +108,8 @@ string decode(string message, string change){     //the function for caesar-ciph
             if ( message[i] < 65 ){     //if the letter has gone out of bounds, then...
                 message[i] += 26;   //the letter is put back in bounds
             }
+
             ++place;      //place is increased by one because the letter has been altered
-        }
-        else{
-            
         }
     }
     return message;     //returns the decrypted message
