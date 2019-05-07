@@ -30,3 +30,5 @@
 *.exe
 *.out
 *.app
+array_multiplier.ipch
+mmap_address.bin
