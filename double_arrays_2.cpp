@@ -11,7 +11,7 @@ int main(){
         for(int j = 0; j < col; ++j){
             grades[i][j] = rand() % 101;
         }
-    }
+    } //h
 
     cout << setw(15) << "Student #: " << endl;
 
