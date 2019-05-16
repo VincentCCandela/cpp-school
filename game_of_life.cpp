@@ -7,23 +7,19 @@ const int row = 20, column = 20; //size of grid
 int checker(int r, int c, char orginial[row][column]); //creates function to check cell is if alive or dead (true or false)
 void changer(int r, int c, char array[][column], char temp_array[][column]);
 
-int main()
-{
+int main(){
     int x_coordinate, y_coordinate; //input for desired coordinates of cells
     char response, response2, grid[row][column], temp_grid[row][column]; //creates grid, response1, and reponse2
 
     for(int i = 0; i < row; ++i){
         for(int j = 0; j < column; ++j){
             grid[i][j] = 'O'; //fills grid with '0's
-        }
-    }
-
-    for(int i = 0; i < row; ++i){
-        for(int j = 0; j < column; ++j){
             cout << setw(4) << grid[i][j]; //outputs grid
+            if(j == 19){
+                cout << endl;
+            }
         }
     }
-
 
     do{
         cout << "Do you want to enter a live cell into the grid? (y/n) ";
@@ -36,12 +32,18 @@ int main()
             cout << "Enter the inverted y coordinate of the cell: ";
             cin >> x_coordinate;
 
+            x_coordinate = x_coordinate % 20;
+            y_coordinate = y_coordinate % 20;
+
             grid[x_coordinate][y_coordinate] = 'X'; //marks where new cell is
 
             for(int i = 0; i < row; ++i){
                 for(int j = 0; j < column; ++j){
                     cout << setw(4) << grid[i][j]; //outputs updated grid
                     temp_grid[i][j] = grid[i][j];
+                    if(j == 19){
+                        cout << endl;
+                    }
                 }
             }
 
@@ -64,6 +66,9 @@ int main()
         for(int i = 0; i < row; ++i){
             for(int j = 0; j < column; ++j){
                 cout << setw(4) << grid[i][j]; //outputs updated grid
+                if(j == 19){
+                    cout << endl;
+                }
             }
         }
 
@@ -77,8 +82,7 @@ int main()
     return 0;
 }
 
-int checker(int r, int c, char original[][column])
-{
+int checker(int r, int c, char original[][column]){
     int counter = 0;
     if(r == 0 && c == 0){
         if(original[r][c + 1] == 'X'){

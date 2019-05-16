@@ -1,17 +1,14 @@
 #include<iostream>
+#include<iomanip>
 
+using namespace std;
 
-//#include <stdio.h>
-//#include <ctype.h>
- 
-int main(void)
-{
-   int ch;
- 
-   for (ch = 0; ch <= 0x7f; ch++)
-   {
-      printf("toupper=%#04x\n", toupper(ch));
-      printf("tolower=%#04x\n", tolower(ch));
-      putchar('\n');
-      }
+int main(){
+   int number = 5;
+   
+   cout << number << endl;
+   number = number % 5;
+   cout << number << endl;
+
+   return 0;
 }

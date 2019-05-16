@@ -34,3 +34,5 @@
 #vscode stuff
 array_multiplier.ipch
 mmap_address.bin
+
+.vscode/*
