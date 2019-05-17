@@ -39,7 +39,8 @@ int main(){
 
             for(int i = 0; i < row; i++){
                 for(int j = 0; j < column; j++){
-                    cout << setw(4) << grid[i][j]; 
+                    cout << setw(4) << grid[i][j];
+                    temp_grid[i][j] = grid[i][j];
                     if(j == 19){
                         cout << endl;
                     }
