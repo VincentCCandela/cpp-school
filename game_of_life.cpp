@@ -11,7 +11,7 @@ int main(){
     int x_coordinate, y_coordinate; //input for desired coordinates of a cell
     char response, response2, grid[row][column], temp_grid[row][column]; //the grid, a temporary grid for cell updates, and the response for continuing the program and adding in new cells
 
-    for(int i = row ; i > 0; i--){
+    for(int i = 0; i < row; i++){
         for(int j = 0; j < column; ++j){
             grid[i][j] = 'O'; //fills grid with '0's
             cout << setw(4) << grid[i][j]; //outputs grid
@@ -37,8 +37,8 @@ int main(){
 
             grid[x_coordinate][y_coordinate] = 'X'; //marks where new cell is
 
-            for(int i = row ; i > 0; i--){
-                for(int j = 0; j < column; ++j){
+            for(int i = 0; i < row; i++){
+                for(int j = 0; j < column; j++){
                     cout << setw(4) << grid[i][j]; 
                     if(j == 19){
                         cout << endl;
@@ -50,15 +50,20 @@ int main(){
             cin >> response;
         }
 
-        for(int i = row - 1; i >= 0 ; i--){
-            for(int j = 0; j < column; ++j){
+        for(int i = 0 ; i < row; i++){
+            for(int j = 0; j < column; j++){
                 changer(i,j,grid,temp_grid); //calls the changer function for grid to update the grid to a new day
             }
         }
 
-        for(int i = row - 1; i >= 0 ; i--){
-            for(int j = 0; j < column; ++j){
+        for(int i = 0 ; i < row; i++){
+            for(int j = 0; j < column; j++){
                 grid[i][j] = temp_grid[i][j];   //sets the real grid to the updated grid
+            }
+        }
+
+        for(int i = 0; i < row ; i++){
+            for(int j = 0; j < column; j++){
                 cout << setw(4) << grid[i][j];  //and outputs the real grid
                 if(j == 19){
                     cout << endl;
