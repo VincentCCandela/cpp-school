@@ -14,7 +14,7 @@ int main(){
     for(int i = 0; i < row; i++){
         for(int j = 0; j < column; ++j){
             grid[i][j] = 'O'; //fills grid with '0's
-            cout << setw(4) << grid[i][j]; //outputs grid
+            cout << setw(4) << grid[19 - i][j]; //outputs grid
             if(j == 19){    //prints the correct number of columns in the outputed grid
                 cout << endl;
             }
@@ -39,7 +39,7 @@ int main(){
 
             for(int i = 0; i < row; i++){
                 for(int j = 0; j < column; j++){
-                    cout << setw(4) << grid[i][j];
+                    cout << setw(4) << grid[19 - i][j];
                     temp_grid[i][j] = grid[i][j];
                     if(j == 19){
                         cout << endl;
@@ -65,7 +65,7 @@ int main(){
 
         for(int i = 0; i < row ; i++){
             for(int j = 0; j < column; j++){
-                cout << setw(4) << grid[i][j];  //and outputs the real grid
+                cout << setw(4) << grid[19 - i][j];  //and outputs the real grid
                 if(j == 19){
                     cout << endl;
                 }

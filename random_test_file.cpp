@@ -39,13 +39,13 @@ int main(){
 
             for(int i = 0; i < row; ++i){
                 for(int j = 0; j < column; ++j){
-                    cout << setw(4) << grid[i][j]; //outputs updated grid
+                    cout << setw(4) << grid[19 - i][j]; //outputs updated grid
                     temp_grid[i][j] = grid[i][j];
                     if(j == 19){
                         cout << endl;
                     }
                 }
-            }
+            }            
 
             cout << "Do you want to enter another live cell into the grid? (y/n) ";
             cin >> response;
@@ -65,7 +65,7 @@ int main(){
 
         for(int i = 0; i < row; ++i){
             for(int j = 0; j < column; ++j){
-                cout << setw(4) << grid[i][j]; //outputs updated grid
+                cout << setw(4) << grid[19 - i][j]; //outputs updated grid
                 if(j == 19){
                     cout << endl;
                 }
