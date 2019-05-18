@@ -10,6 +10,7 @@ void changer(int r, int c, char array[][column], char temp_array[][column]);  //
 int main(){
     int x_coordinate, y_coordinate; //input for desired coordinates of a cell
     char response, response2, grid[row][column], temp_grid[row][column]; //the grid, a temporary grid for cell updates, and the response for continuing the program and adding in new cells
+    int the_counter = 0;
 
     for(int i = 0; i < row; ++i){
         for(int j = 0; j < column; ++j){
@@ -21,7 +22,8 @@ int main(){
         }
     }
 
-    do{
+    do{ 
+        the_counter = 0;
         cout << "Do you want to enter a live cell into the grid? (y/n) "; //asks the user if they want to put another cell into the grid
         cin >> response;
 
@@ -61,7 +63,10 @@ int main(){
 
         for(int i = 0; i < row; ++i){
             for(int j = 0; j < column; ++j){
-                grid[i][j] = temp_grid[i][j];    //after the changer is finished, updates the real grid to the fake grid        
+                grid[i][j] = temp_grid[i][j];    //after the changer is finished, updates the real grid to the fake grid
+                if(grid[i][j] == 'X'){
+                    the_counter++;
+                }        
             }
         }
 
@@ -79,7 +84,7 @@ int main(){
         cout << "Do you want to go to the next day? (y/n)"; //asks the user if he wants to continue to a new day
         cin >> response2;
         
-    } while(toupper(response2) == 'Y');   //if the user wants to continue, then the program continues, otherwise it exits
+    } while(toupper(response2) == 'Y' && the_counter > 0);   //if the user wants to continue, and there are still living cells then the program continues, otherwise it exits
 
     cout << "Thanks for playing!" << endl;
 
