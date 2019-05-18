@@ -10,7 +10,7 @@ void changer(int r, int c, char array[][column], char temp_array[][column]);  //
 int main(){
     int x_coordinate, y_coordinate; //input for desired coordinates of a cell
     char response, response2, grid[row][column], temp_grid[row][column]; //the grid, a temporary grid for cell updates, and the response for continuing the program and adding in new cells
-    int the_counter = 0;
+    int the_counter = 0; //creates a counter for the number of live cells
 
     for(int i = 0; i < row; ++i){
         for(int j = 0; j < column; ++j){
@@ -64,7 +64,7 @@ int main(){
         for(int i = 0; i < row; ++i){
             for(int j = 0; j < column; ++j){
                 grid[i][j] = temp_grid[i][j];    //after the changer is finished, updates the real grid to the fake grid
-                if(grid[i][j] == 'X'){
+                if(grid[i][j] == 'X'){ //for every live cell in the grid, then the counter is increased by 1
                     the_counter++;
                 }        
             }
