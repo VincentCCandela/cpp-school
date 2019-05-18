@@ -22,7 +22,7 @@ int main(){
     }
 
     do{
-        cout << "Do you want to enter a live cell into the grid? (y/n) ";
+        cout << "Do you want to enter a live cell into the grid? (y/n) "; //asks the user if they want to put another cell into the grid
         cin >> response;
 
         while (toupper(response) == 'Y'){ //when response is yes, will let you select where you want new cell
@@ -32,7 +32,7 @@ int main(){
             cout << "Enter the y coordinate of the cell: ";
             cin >> x_coordinate;
 
-            x_coordinate = x_coordinate % 20;
+            x_coordinate = x_coordinate % 20;   //if either of the coordinates is too large, then it is put back in bounds
             y_coordinate = y_coordinate % 20;
 
             grid[x_coordinate][y_coordinate] = 'X'; //marks where new cell is
