@@ -7,28 +7,75 @@ const int row = 8, column = 8; //size of board is declared globally so that all 
 
 int main(){
     string response, response2, grid[row][column], temp_grid[row][column]; //the grid, a temporary grid for cell updates, and the response for continuing the program and adding in new cells
+    int x_coordinate, y_coordinate, to_x_coordinate, to_y_coordinate;
 
     for(int i = 0; i < row; i++){
         for(int j = 0; j < column; j++){
             //fills board with '0's and 'X's
             if( ((i % 2 == 0 && j % 2 == 0) || (i % 2 == 1 && j % 2 == 1)) && (row != 4 && row != 5) ){
-                grid[i][j] = "⬜️";
+                grid[i][j] = "⬜️ ";
             }
             else{
-                grid[i][j] = "⬛️";
+                grid[i][j] = "⬛️ ";
+            }
+            if(((i % 2 == 0 && j % 2 == 0) || (i % 2 == 1 && j % 2 == 1))){
+                if(i == 0 || i == 1 || i == 2){
+                    grid[i][j] = "🔴 ";                                       
+                }
+                else if(i == 5 || i == 6 || i == 7){
+                    grid[i][j] = "⚫️ ";
+                }
+            } 
+            else{
+
             }
         }
     }
 
     for(int i = 0; i < row; ++i){
         for(int j = 0; j < column; ++j){
-            cout << setw(7) << grid[7 - i][j]; //outputs grid
+            cout << grid[7 - i][j]; //outputs grid
             if(j == column - 1){  //prints the correct number of columns in the outputed grid
                 cout << endl;
             }
         }
     }
 
+    cout << "Which piece do you want to move?" << endl;
+    do {
+        cout << "enter the x-value: ";
+        cin >> x_coordinate;
+    } while (x_coordinate < 0 || x_coordinate > 7);
+    do {
+        cout << "enter the y-value: ";
+        cin >> y_coordinate;
+    } while (y_coordinate < 0 || y_coordinate > 7);
+
+    y_coordinate = (7 - y_coordinate);
+
+    cout << "Where do you want to move?" << endl;
+    do {
+        cout << "enter the x-value: ";
+        cin >> to_x_coordinate;
+    } while (to_x_coordinate < 0 || to_x_coordinate > 7);
+    do {
+        cout << "enter the y-value: ";
+        cin >> to_y_coordinate;
+    } while (to_y_coordinate < 0 || to_y_coordinate > 7);
+
+    to_y_coordinate = (7 - to_y_coordinate);
+
+    grid[to_y_coordinate][to_x_coordinate] = "🔴 ";
+    grid[y_coordinate][x_coordinate] = "⚫️ ";
+
+    for(int i = 0; i < row; ++i){
+        for(int j = 0; j < column; ++j){
+            cout << grid[7 - i][j]; //outputs grid
+            if(j == column - 1){  //prints the correct number of columns in the outputed grid
+                cout << endl;
+            }
+        }
+    }
 
     return 0;
 }
