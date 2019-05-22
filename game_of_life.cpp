@@ -4,7 +4,7 @@
 using namespace std;
 
 const int row = 20, column = 20; //size of grid; is declared globally so that all of the grids used can use these variables
-int checker(int r, int c, char orginial[row][column]); //creates function to check the number of live cells around a cell
+int checker(int r, int c, char orginial[][column]); //creates function to check the number of live cells around a cell
 void changer(int r, int c, char array[][column], char temp_array[][column]);  //function that calls the checker and changes cells based on the output of the checker
 
 int main(){
