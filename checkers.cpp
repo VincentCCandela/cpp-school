@@ -6,6 +6,7 @@ using namespace std;
 const int row = 8, column = 8; //size of board is declared globally so that all of the variables for the board can use these variables
 
 int counter(string array[][column], string type);
+void printer(string array[][column]);
 
 int main(){
     string response, response2, grid[row][column], temp_grid[row][column]; //the grid, a temporary grid for cell updates, and the response for continuing the program and adding in new cells
@@ -32,16 +33,10 @@ int main(){
             } 
         }
     }
+    
+    printer(grid);
 
-    for(int i = 0; i < row; ++i){
-        for(int j = 0; j < column; ++j){
-            cout << grid[7 - i][j]; //outputs grid
-            if(j == column - 1){  //prints the correct number of columns in the outputed grid
-                cout << endl;
-            }
-        }
-    }
-    while(counter(grid) > 0){
+    while(counter(grid, "🔴 ") > 0){
         cout << "Which piece do you want to move?" << endl;
         do{
             cout << "enter the x-value: ";
@@ -70,29 +65,21 @@ int main(){
         grid[6 - to_y_coordinate][to_x_coordinate] = "🔴 ";
         grid[y_coordinate][x_coordinate] = "⬜️ ";
 
-        for( int i = 0; i < row; ++i ){
-            for( int j = 0; j < column; ++j ){
-                cout << grid[7 - i][j]; //outputs grid
-                if( j == column - 1 ){  //prints the correct number of columns in the outputed grid
-                    cout << endl;
-                }
-            }
-        }
+        printer(grid);
 
         for( int i = 0; i < row; ++i ){
             for( int j = 0; j < column; ++j ){
                 if( (grid[i - 1][j - 1] == "🔴 ") && (grid[i - 2][j - 2] == "⬜️ ") ){
-                    grid[i - 2][j - 2] = "🔴 ";
+                    grid[i - 2][j - 2] = "⚫️ ";
+                    grid[i - 1][j - 1] = "⬜️ ";
                 }
                 else if( (grid[i - 1][j + 1] == "🔴 ") && (grid[i - 2][j + 2] == "⬜️ ")){
-                    grid[i - 2][j + 2] = "🔴 ";                
+                    grid[i - 2][j + 2] = "⚫️ "; 
+                    grid[i - 1][j + 1] = "⬜️ ";
                 }
-                /*else if( grid[i - 1][j - 1] == "🔴 "){
+                else{
                     
                 }
-                else if( grid[i - 1][j + 1] == "🔴 "){
-                    
-                }*/
             }
         }
     }
@@ -100,5 +87,24 @@ int main(){
 }
 
 int counter(string array[][column], string type){
+    int counter = 0;
+    for(int i = 0; i < row; ++i){
+        for(int j = 0; j < column; ++j){
+        if(array[i][j] == type)
+            counter++;
+        }
+    }
+    
+    return counter;
+}
 
+void printer(string array[][column]){
+    for(int i = 0; i < row; ++i){
+        for(int j = 0; j < column; ++j){
+            cout << array[7 - i][j]; //outputs grid
+            if(j == column - 1){  //prints the correct number of columns in the outputed grid
+                cout << endl;
+            }
+        }
+    }
 }
