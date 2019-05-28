@@ -68,7 +68,7 @@ int main(){
         printer(grid);
 
         for( int i = 0; i < row; ++i ){
-            for( int j = 0; j < column; ++j ){
+            for( int j = 0; j < column; ++j ){ 
                 if( (grid[i - 1][j - 1] == "🔴 ") && (grid[i - 2][j - 2] == "⬜️ ") ){
                     grid[i - 2][j - 2] = "⚫️ ";
                     grid[i - 1][j - 1] = "⬜️ ";
@@ -78,7 +78,12 @@ int main(){
                     grid[i - 1][j + 1] = "⬜️ ";
                 }
                 else{
-                    
+                    if( (rand() % 1 == 1) && (grid[][] == "⬜️ ") ){
+
+                    }
+                    else{
+
+                    }
                 }
             }
         }
