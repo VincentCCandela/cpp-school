@@ -36,7 +36,8 @@ int main(){
     
     printer(grid);
 
-    while(counter(grid, "🔴 ") > 0){
+    while( counter(grid, "🔴 ") > 0 && counter(grid, "⚫️ ") > 0 ){
+        
         cout << "Which piece do you want to move?" << endl;
         do{
             cout << "enter the x-value: ";
@@ -49,36 +50,65 @@ int main(){
 
         }while ( y_coordinate < 0 || y_coordinate > 7 );
         
-        cout << "Where do you want to move?" << endl;
+        cout << "Do you want to move left or right? (L/R)";
+        char the_move;
         
-        do{
-            cout << "enter the x-value: ";
-            cin >> to_x_coordinate;
+        bool the_response = false;
 
-        } while ( to_x_coordinate < 0 || to_x_coordinate > 7 );
-        do{
-            cout << "enter the y-value: ";
-            cin >> to_y_coordinate;
+        while ( the_response == false ){
+            cin >> the_move;
+            the_move = toupper(the_move);
 
-        }while ( to_y_coordinate < 0 || to_y_coordinate > 7 );
+            /*if( the_move != 'L' || the_move != 'R' ){
+                the_response = false;
+                cout << "Not a correct response! Enter the correct response: ";
+            }
+            else*/ if( the_move == 'L'){
+                if(i == 7){
+                cout << "1 Move not possible! Choose again: ";
+                }
+                else if(j == 0){
+                cout << "2 Move not possible! Choose again: ";
+                }
+                else{
+                    the_response = true;
+                }
+            }
+            else if( the_move == 'R' ){
+                if(i == 7){
+                cout << "3 Move not possible! Choose again: ";
+                }
+                else if(j == 7){
+                cout << "4 Move not possible! Choose again: ";
+                }
+                else{
+                    the_response = true;
+                }
+            }
+        }
 
-        grid[6 - to_y_coordinate][to_x_coordinate] = "🔴 ";
-        grid[y_coordinate][x_coordinate] = "⬜️ ";
-
+        cout << endl;
+        cout << "print 1" << endl;
         printer(grid);
+
+        int counter1 = 0;
 
         for( int i = 0; i < row; ++i ){
             for( int j = 0; j < column; ++j ){ 
-                if( (grid[i - 1][j - 1] == "🔴 ") && (grid[i - 2][j - 2] == "⬜️ ") ){
+                if( (grid[i - 1][j - 1] == "🔴 ") && (grid[i - 2][j - 2] == "⬜️ ") && (grid[i][j] == "⚫️ ") ){
                     grid[i - 2][j - 2] = "⚫️ ";
                     grid[i - 1][j - 1] = "⬜️ ";
+                    grid[i][j] = "⬜️ ";
+                    counter1++;
                 }
-                else if( (grid[i - 1][j + 1] == "🔴 ") && (grid[i - 2][j + 2] == "⬜️ ")){
+                else if( (grid[i - 1][j + 1] == "🔴 ") && (grid[i - 2][j + 2] == "⬜️ ") && (grid[i][j] == "⚫️ ") ){
                     grid[i - 2][j + 2] = "⚫️ "; 
                     grid[i - 1][j + 1] = "⬜️ ";
+                    grid[i][j] = "⬜️ ";
+                    counter1++;
                 }
                 else{
-                    if( (rand() % 1 == 1) && (grid[][] == "⬜️ ") ){
+                    if( (rand() % 1 == 1) && (grid[i - 1][j - 1] == "⬜️ ") ){
 
                     }
                     else{
@@ -87,26 +117,44 @@ int main(){
                 }
             }
         }
+
+        if( counter1 == 0 ){
+            for ( int i = 0; i < row; i++){
+                for (int j = 0; j < column; j++){
+                    if( (counter1 == 0) && (grid[i - 1][j - 1] == "⬜️ ") && (grid[i][j] == "⚫️ ") ){
+                        grid[i - 1][j - 1] = "⚫️ ";
+                        grid[i][j] = "⬜️ ";
+                        counter1++;
+                    }
+                    else if( (counter1 == 0) && (grid[i - 1][j + 1] == "⬜️ ") && (grid[i][j] == "⚫️ ") ){
+                        grid[i - 1][j + 1] = "⚫️ ";
+                        grid[i][j] = "⬜️ ";
+                        counter1++;
+                    }
+                }
+            }
+        }
+
     }
     return 0;
 }
 
 int counter(string array[][column], string type){
-    int counter = 0;
+    int the_counter = 0;
     for(int i = 0; i < row; ++i){
         for(int j = 0; j < column; ++j){
         if(array[i][j] == type)
-            counter++;
+            the_counter++;
         }
     }
     
-    return counter;
+    return the_counter;
 }
 
 void printer(string array[][column]){
     for(int i = 0; i < row; ++i){
         for(int j = 0; j < column; ++j){
-            cout << array[7 - i][j]; //outputs grid
+            cout << array[i][j]; //outputs grid
             if(j == column - 1){  //prints the correct number of columns in the outputed grid
                 cout << endl;
             }
