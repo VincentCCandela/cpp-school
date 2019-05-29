@@ -2,7 +2,6 @@
 #include<iomanip>
 using namespace std;
 
-
 const int row = 8, column = 8; //size of board is declared globally so that all of the variables for the board can use these variables
 
 int counter(string array[][column], string type);
