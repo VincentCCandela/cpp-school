@@ -6,9 +6,10 @@ const int row = 8, column = 8; //size of board is declared globally so that all 
 
 int counter(string array[][column], string type);
 void printer(string array[][column]);
+void mover(string array[][column], int the_row, int the_column, char move, int iteration);
 
 int main(){
-    string response, response2, grid[row][column], temp_grid[row][column]; //the grid, a temporary grid for cell updates, and the response for continuing the program and adding in new cells
+    string response, response2, grid[row][column]; //the grid, a temporary grid for cell updates, and the response for continuing the program and adding in new cells
     int x_coordinate = 0, y_coordinate = 0, to_x_coordinate, to_y_coordinate, i = 0, j = 0;
 
     srand(time(NULL));
@@ -54,19 +55,15 @@ int main(){
         
         bool the_response = false;
 
-        while ( the_response == false ){
+        do{
             cin >> the_move;
             the_move = toupper(the_move);
 
-            /*if( the_move != 'L' || the_move != 'R' ){
-                the_response = false;
-                cout << "Not a correct response! Enter the correct response: ";
-            }
-            else*/ if( the_move == 'L'){
-                if(i == 7){
+          if( the_move == 'L'){
+                if(x_coordinate == 7){
                 cout << "1 Move not possible! Choose again: ";
                 }
-                else if(j == 0){
+                else if(y_coordinate == 0){
                 cout << "2 Move not possible! Choose again: ";
                 }
                 else{
@@ -74,17 +71,19 @@ int main(){
                 }
             }
             else if( the_move == 'R' ){
-                if(i == 7){
+                if(x_coordinate == 7){
                 cout << "3 Move not possible! Choose again: ";
                 }
-                else if(j == 7){
+                else if(y_coordinate == 7){
                 cout << "4 Move not possible! Choose again: ";
                 }
                 else{
                     the_response = true;
                 }
             }
-        }
+        } while ( the_response == false );
+        
+        mover(grid, x_coordinate, y_coordinate, the_move, 0);
 
         cout << endl;
         cout << "print 1" << endl;
@@ -94,26 +93,26 @@ int main(){
 
         for( int i = 0; i < row; ++i ){
             for( int j = 0; j < column; ++j ){ 
-                if( (grid[i - 1][j - 1] == "🔴 ") && (grid[i - 2][j - 2] == "⬜️ ") && (grid[i][j] == "⚫️ ") ){
+                if( (grid[i - 1][j - 1] == "🔴 ") && (grid[i - 2][j - 2] == "⬜️ ") && (grid[i][j] == "⚫️ ") && (counter1 == 0) ){
                     grid[i - 2][j - 2] = "⚫️ ";
                     grid[i - 1][j - 1] = "⬜️ ";
                     grid[i][j] = "⬜️ ";
                     counter1++;
                 }
-                else if( (grid[i - 1][j + 1] == "🔴 ") && (grid[i - 2][j + 2] == "⬜️ ") && (grid[i][j] == "⚫️ ") ){
+                else if( (grid[i - 1][j + 1] == "🔴 ") && (grid[i - 2][j + 2] == "⬜️ ") && (grid[i][j] == "⚫️ ") && (counter1 == 0) ){
                     grid[i - 2][j + 2] = "⚫️ "; 
                     grid[i - 1][j + 1] = "⬜️ ";
                     grid[i][j] = "⬜️ ";
                     counter1++;
-                }
+                }/*
                 else{
-                    if( (rand() % 1 == 1) && (grid[i - 1][j - 1] == "⬜️ ") ){
+                    if( (rand() % 1 == 1) && (grid[i - 1][j - 1] == "⬜️ ")  ){
 
                     }
                     else{
 
                     }
-                }
+                }*/
             }
         }
 
@@ -134,8 +133,79 @@ int main(){
             }
         }
 
+        cout << endl;
+        cout << "print 2" << endl;
+        printer(grid);
+
     }
     return 0;
+}
+
+void mover(string array[][column], int the_row, int the_column, char move, int iteration){
+    if( toupper(move) == 'L' ){
+        if(array[the_row + 1][the_column - 1] == "⬜️ "){
+            array[the_row][the_column] = "⬜️ ";
+            array[the_row + 1][the_column - 1] = "🔴 ";
+            the_row = the_row + 1;
+            the_column = the_column - 1;
+            cout << "done!" << endl;
+        }
+    }
+    else if(){
+
+    }
+    else if( (toupper(move) == 'L') && (iteration == 0) ){
+        if(array[the_row + 1][the_column - 1] == "⚫️ "){
+            array[the_row][the_column] = "⬜️ ";
+            array[the_row + 1][the_column - 1] = "⬜️ ";
+            array[the_row + 2][the_column - 2] = "🔴 ";
+            the_row = the_row + 2;
+            the_column = the_column - 2;
+            mover(array, the_row, the_column, move, 1);
+        }
+        else{
+            cout << "done!" << endl;
+        }
+    }    
+    
+    else if( (toupper(move) == 'R') && (iteration == 0) ){
+        if(array[the_row + 1][the_column + 1] == "⚫️ "){
+            array[the_row][the_column] = "⬜️ ";
+            array[the_row + 1][the_column + 1] = "⬜️ ";
+            array[the_row + 2][the_column + 2] = "🔴 ";
+            the_row = the_row + 2;
+            the_column = the_column +2;
+            mover(array, the_row, the_column, move, 1);
+        }
+        else{
+            cout << "done!" << endl;
+        }
+    }
+    else if( (toupper(move) == 'R') && (iteration == 1) ){
+         if(array[the_row + 1][the_column - 1] == "⚫️ "){
+            array[the_row][the_column] = "⬜️ ";
+            array[the_row + 1][the_column - 1] = "⬜️ ";
+            array[the_row + 2][the_column - 2] = "🔴 ";
+            the_row = the_row + 2;
+            the_column = the_column - 2;
+            mover(array, the_row, the_column, move, 1);
+        }
+        else if(array[the_row + 1][the_column + 1] == "⚫️ "){
+            array[the_row][the_column] = "⬜️ ";
+            array[the_row + 1][the_column + 1] = "⬜️ ";
+            array[the_row + 2][the_column + 2] = "🔴 ";
+            the_row = the_row + 2;
+            the_column = the_column + 2;
+            mover(array, the_row, the_column, move, 1);
+        }
+        else{
+            cout << "done!" << endl;
+        }
+    }
+    else{
+        cout << "done!" << endl;
+    }
+
 }
 
 int counter(string array[][column], string type){
