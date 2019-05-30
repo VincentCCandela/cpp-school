@@ -142,68 +142,64 @@ int main(){
 }
 
 void mover(string array[][column], int the_row, int the_column, char move, int iteration){
-    if( toupper(move) == 'L' ){
-        if(array[the_row + 1][the_column - 1] == "⬜️ "){
-            array[the_row][the_column] = "⬜️ ";
-            array[the_row + 1][the_column - 1] = "🔴 ";
-            the_row = the_row + 1;
-            the_column = the_column - 1;
-            cout << "done!" << endl;
-        }
+    if( (toupper(move) == 'L') && (array[the_row + 1][the_column - 1] == "⬜️ ") ){
+        array[the_row][the_column] = "⬜️ ";
+        array[the_row + 1][the_column - 1] = "🔴 ";
+        the_row = the_row + 1;
+        the_column = the_column - 1;
+        cout << "done!" << endl;
     }
-    else if(){
-
+    else if( (toupper(move) == 'R') && (array[the_row + 1][the_column + 1] == "⬜️ ") ){
+        array[the_row][the_column] = "⬜️ ";
+        array[the_row + 1][the_column + 1] = "🔴 ";
+        the_row = the_row + 1;
+        the_column = the_column + 1;
+        cout << "done!" << endl;
     }
-    else if( (toupper(move) == 'L') && (iteration == 0) ){
-        if(array[the_row + 1][the_column - 1] == "⚫️ "){
-            array[the_row][the_column] = "⬜️ ";
-            array[the_row + 1][the_column - 1] = "⬜️ ";
-            array[the_row + 2][the_column - 2] = "🔴 ";
-            the_row = the_row + 2;
-            the_column = the_column - 2;
-            mover(array, the_row, the_column, move, 1);
-        }
-        else{
-            cout << "done!" << endl;
-        }
+    else if( (toupper(move) == 'L') && (iteration == 0) && (array[the_row + 1][the_column - 1] == "⚫️ ") && (array[the_row + 2][column - 2] == "⬜️ ") ){
+        array[the_row][the_column] = "⬜️ ";
+        array[the_row + 1][the_column - 1] = "⬜️ ";
+        array[the_row + 2][the_column - 2] = "🔴 ";
+        the_row = the_row + 2;
+        the_column = the_column - 2;
+        mover(array, the_row, the_column, move, 1);
+        cout << "done!" << endl;
     }    
     
-    else if( (toupper(move) == 'R') && (iteration == 0) ){
-        if(array[the_row + 1][the_column + 1] == "⚫️ "){
-            array[the_row][the_column] = "⬜️ ";
-            array[the_row + 1][the_column + 1] = "⬜️ ";
-            array[the_row + 2][the_column + 2] = "🔴 ";
-            the_row = the_row + 2;
-            the_column = the_column +2;
-            mover(array, the_row, the_column, move, 1);
-        }
-        else{
-            cout << "done!" << endl;
-        }
+    else if( (toupper(move) == 'R') && (iteration == 0) && (array[the_row + 1][the_column + 1] == "⚫️ ") && (array[the_row + 2][column + 2] == "⬜️ ") ){
+        array[the_row][the_column] = "⬜️ ";
+        array[the_row + 1][the_column + 1] = "⬜️ ";
+        array[the_row + 2][the_column + 2] = "🔴 ";
+        the_row = the_row + 2;
+        the_column = the_column +2;
+        mover(array, the_row, the_column, move, 1);
+        cout << "done!" << endl;
     }
     else if( (toupper(move) == 'R') && (iteration == 1) ){
-         if(array[the_row + 1][the_column - 1] == "⚫️ "){
+         if( (array[the_row + 1][the_column - 1] == "⚫️ ") && (array[the_row + 2][column - 2] == "⬜️ ") ){
             array[the_row][the_column] = "⬜️ ";
             array[the_row + 1][the_column - 1] = "⬜️ ";
             array[the_row + 2][the_column - 2] = "🔴 ";
             the_row = the_row + 2;
             the_column = the_column - 2;
             mover(array, the_row, the_column, move, 1);
+            cout << "done!" << endl;
         }
-        else if(array[the_row + 1][the_column + 1] == "⚫️ "){
+        else if( (array[the_row + 1][the_column + 1] == "⚫️ ") && (array[the_row + 2][column + 2] == "⬜️ ") ){
             array[the_row][the_column] = "⬜️ ";
             array[the_row + 1][the_column + 1] = "⬜️ ";
             array[the_row + 2][the_column + 2] = "🔴 ";
             the_row = the_row + 2;
             the_column = the_column + 2;
             mover(array, the_row, the_column, move, 1);
+            cout << "done!" << endl;
         }
         else{
             cout << "done!" << endl;
         }
     }
     else{
-        cout << "done!" << endl;
+    
     }
 
 }
