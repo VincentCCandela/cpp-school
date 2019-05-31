@@ -83,11 +83,15 @@ int main(){
             }
         } while ( the_response == false );
         
-        mover(grid, x_coordinate, y_coordinate, the_move, 0);
+        //the_move = toupper(the_move);
+        while( (grid[x_coordinate + 1][y_coordinate + 1] == "⚫️ " && grid[x_coordinate + 2][y_coordinate + 2] == "⬜️ ") || (grid[x_coordinate + 1][y_coordinate - 1] == "⚫️ " && grid[x_coordinate + 2][y_coordinate - 2] == "⬜️ ") ){
+            mover(grid, x_coordinate, y_coordinate, the_move, 0);
+        }
+        
 
-        cout << endl;
+        /*cout << endl;
         cout << "print 1" << endl;
-        printer(grid);
+        printer(grid);*/
 
         int counter1 = 0;
 
@@ -104,15 +108,7 @@ int main(){
                     grid[i - 1][j + 1] = "⬜️ ";
                     grid[i][j] = "⬜️ ";
                     counter1++;
-                }/*
-                else{
-                    if( (rand() % 1 == 1) && (grid[i - 1][j - 1] == "⬜️ ")  ){
-
-                    }
-                    else{
-
-                    }
-                }*/
+                }
             }
         }
 
@@ -156,7 +152,7 @@ void mover(string array[][column], int the_row, int the_column, char move, int i
         the_column = the_column + 1;
         cout << "done!" << endl;
     }
-    else if( (toupper(move) == 'L') && (iteration == 0) && (array[the_row + 1][the_column - 1] == "⚫️ ") && (array[the_row + 2][column - 2] == "⬜️ ") ){
+    else if( (toupper(move) == 'L') && (array[the_row + 1][the_column - 1] == "⚫️ ") && (array[the_row + 2][column - 2] == "⬜️ ") ){
         array[the_row][the_column] = "⬜️ ";
         array[the_row + 1][the_column - 1] = "⬜️ ";
         array[the_row + 2][the_column - 2] = "🔴 ";
@@ -165,8 +161,7 @@ void mover(string array[][column], int the_row, int the_column, char move, int i
         mover(array, the_row, the_column, move, 1);
         cout << "done!" << endl;
     }    
-    
-    else if( (toupper(move) == 'R') && (iteration == 0) && (array[the_row + 1][the_column + 1] == "⚫️ ") && (array[the_row + 2][column + 2] == "⬜️ ") ){
+    else if( (toupper(move) == 'R') && (array[the_row + 1][the_column + 1] == "⚫️ ") && (array[the_row + 2][column + 2] == "⬜️ ") ){
         array[the_row][the_column] = "⬜️ ";
         array[the_row + 1][the_column + 1] = "⬜️ ";
         array[the_row + 2][the_column + 2] = "🔴 ";
@@ -175,6 +170,26 @@ void mover(string array[][column], int the_row, int the_column, char move, int i
         mover(array, the_row, the_column, move, 1);
         cout << "done!" << endl;
     }
+    
+    if( (array[the_row + 1][the_column - 1] == "⚫️ ") && (array[the_row + 2][column - 2] == "⬜️ ") ){
+        array[the_row][the_column] = "⬜️ ";
+        array[the_row + 1][the_column - 1] = "⬜️ ";
+        array[the_row + 2][the_column - 2] = "🔴 ";
+        the_row = the_row + 2;
+        the_column = the_column - 2;
+        mover(array, the_row, the_column, move, 1);
+        cout << "done!" << endl;
+    }    
+    else if( (array[the_row + 1][the_column + 1] == "⚫️ ") && (array[the_row + 2][column + 2] == "⬜️ ") ){
+        array[the_row][the_column] = "⬜️ ";
+        array[the_row + 1][the_column + 1] = "⬜️ ";
+        array[the_row + 2][the_column + 2] = "🔴 ";
+        the_row = the_row + 2;
+        the_column = the_column +2;
+        mover(array, the_row, the_column, move, 1);
+        cout << "done!" << endl;
+    }
+
     else if( (toupper(move) == 'R') && (iteration == 1) ){
          if( (array[the_row + 1][the_column - 1] == "⚫️ ") && (array[the_row + 2][column - 2] == "⬜️ ") ){
             array[the_row][the_column] = "⬜️ ";
@@ -201,6 +216,8 @@ void mover(string array[][column], int the_row, int the_column, char move, int i
     else{
     
     }
+
+    iteration++;
 
 }
 
