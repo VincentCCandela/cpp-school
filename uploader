@@ -1,4 +1,6 @@
 #!/bin/bash
+
+#git mv to move files
 while :
 	do 
 	git add *
