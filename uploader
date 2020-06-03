@@ -1,9 +1,7 @@
 #!/bin/bash
 
 #git mv to move files
-while :
-	do 
-	git add *
-	git commit -m "an auto upload"
-	git push origin master
-	done
+
+git add *
+git commit -m "an auto upload"
+git push origin master
